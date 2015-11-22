@@ -1,0 +1,197 @@
+body {
+    background-color: #D5D3D3;
+    position: relative;
+}
+
+/*label{
+  margin-bottom: 8px;
+	display: block;
+  margin-left: 20px;
+	width: 300px;
+	color: black;
+	font-size: 16px;
+  font-family: 'Segoe UI';
+	font-weight: normal;
+}*/
+
+h3
+{
+  color: white;
+  font-family: 'Segoe UI';
+  font-weight: normal;
+  font-size: 22px;
+  margin: 15px;
+  text-align: center;
+}
+
+/*.txt {
+	display: block;
+	width: 90%;
+	height: 35px;
+  font-family: 'Segoe UI';
+	margin-bottom: 15px;
+	color: #000;
+	background-color: #F4F6F6;
+	border: 1px solid #999;
+  margin-left: 20px;
+  border-radius: 5px;
+	box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.1);
+	-moz-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	font-size: 14px;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+}*/
+
+.menu {
+  list-style:none;
+  float:left;
+  height:auto;
+  border: 1px solid #797C7A;
+  padding: 0%;
+  width:70%;
+}
+
+.menu li {
+  float:left;
+  height: 30px;
+  margin-left:5px;
+  width: 150px;
+  margin-top: :0px;
+  padding:5px;
+  text-align: center;
+}
+
+.menu li:hover {
+    background-color: #051359;
+    border-radius: 5px;
+}
+
+.menu li a {
+  font-family: 'Segoe UI';
+  font-size: 18px;
+  color: black;
+  text-decoration:none;
+}
+
+.contenedor_menus
+{
+ width: 100%;
+ height: auto;
+ float: left;
+}
+
+.opciones{
+  width:20%;
+  border: 1px solid #797C7A;
+  height: auto;
+  float: left;
+}
+
+.opciones li
+{
+  float:left;
+  height: 30px;
+  margin-left:5px;
+  width: 100px;
+  margin-top: :0px;
+  padding:5px;
+  text-align: center;
+  background-color: #0F4D02;
+  border-radius: 5px;
+}
+
+.opciones li a
+{
+  font-family: 'Segoe UI';
+  font-size: 12px;
+  color: white;
+  text-decoration:none;
+}
+
+.div_contenedor
+{
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 670px;
+  background-color: #156594;
+}
+
+.pregunta
+{
+  position: absolute;
+  width: 700px;
+  height: auto;
+  left: 10%;
+  top: 5%;
+  margin: 0 auto;
+}
+
+.servicios{
+  position: absolute;
+  width: 700px;
+  height: auto;
+  left: 10%;
+  top: 32%;
+  margin: 0 auto;
+}
+
+p{
+  margin-bottom: 8px;
+	display: block;
+  margin-left: 5px;
+	color: #FFFFFF;
+	font-size: 32px;
+  font-family: 'Segoe UI';
+	font-weight: normal;
+}
+
+.li_servicios{
+  margin-bottom: 8px;
+	display: block;
+  margin-left: 5px;
+	color: #FFFFFF;
+	font-size: 24px;
+  font-family: 'Segoe UI';
+	font-weight: normal;
+}
+
+.contenedor_registro
+{
+    position: relative;
+    border-radius: 8px;
+    border-color:#036;
+    /*left: 50%;*/
+    margin: 10px auto;
+    background-color: rgb(201,199,199); opacity: 0.7;
+    /*top: 30%;*/
+    width: 500px;
+    height: auto;
+    border: 2px solid #000000;
+    /*transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);*/
+}
+
+.boton{
+        font-size:14px;
+        font-family:'Segoe UI';
+        font-weight:bold;
+        color:white;
+        background:#156594;
+        border:0px;
+        width:auto;
+        height:auto;
+        margin-bottom: 20px;
+  }
+
+  .boton:hover
+  {
+      background:#288DC8;
+  }
