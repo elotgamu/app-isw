@@ -88,7 +88,7 @@
             </div>
             <div class="form-group">
               {!! Form::label('Telefono','Telefono del propietario',array('class'=> 'label')) !!}
-              {!! Form::tel('txttelefono',null,array('pattern'=>'[0-9]{8}','id'=>'txttelefono','class' => 'form-control')) !!}
+              {!! Form::text('txttelefono',null,array('pattern'=>'[0-9]{8}','id'=>'txttelefono','class' => 'form-control')) !!}
             </div>
             <div class="form-group">
               {!! Form::label('user','Nombre de usuario',array('class'=> 'label')) !!}
