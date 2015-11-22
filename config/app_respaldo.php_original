@@ -26,11 +26,7 @@ return [
     |
     */
 
-<<<<<<< HEAD
     'url' => 'http://localhost',
-=======
-    'url' => 'http://app-isw.net',
->>>>>>> ae9e13b102fd0dbe32d58757f6c8795c0eb66002
 
     /*
     |--------------------------------------------------------------------------
@@ -45,11 +41,7 @@ return [
 
     'timezone' => 'UTC',
 
-<<<<<<< HEAD
     /*
-=======
-    /*	
->>>>>>> ae9e13b102fd0dbe32d58757f6c8795c0eb66002
     |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
@@ -121,11 +113,6 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
-<<<<<<< HEAD
-        'Illuminate\Html\HtmlServiceProvider',
-        Collective\Html\HtmlServiceProvider::class,
-=======
->>>>>>> ae9e13b102fd0dbe32d58757f6c8795c0eb66002
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -172,12 +159,7 @@ return [
     */
 
     'aliases' => [
-<<<<<<< HEAD
-        'Form'      => 'Illuminate\Html\FormFacade',
-        'HTML'      => 'Illuminate\Html\HtmlFacade',
-=======
 
->>>>>>> ae9e13b102fd0dbe32d58757f6c8795c0eb66002
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
         'Auth'      => Illuminate\Support\Facades\Auth::class,
@@ -211,11 +193,6 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-<<<<<<< HEAD
-        'Form' => 'Collective\Html\FormFacade',
-        'Html' => 'Collective\Html\HtmlFacade',
-=======
->>>>>>> ae9e13b102fd0dbe32d58757f6c8795c0eb66002
 
     ],
 
