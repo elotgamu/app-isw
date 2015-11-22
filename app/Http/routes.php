@@ -1,9 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ae9e13b102fd0dbe32d58757f6c8795c0eb66002
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -15,7 +11,6 @@
 |
 */
 
-<<<<<<< HEAD
 Route::get('/Home','negocioController@create');
 /*Route::controller('registrar_negocio');*/
 
@@ -28,8 +23,6 @@ Route::get('/Home','negocioController@create');
     //return "Aqui no hay nada bueno";
     return view('formularios.registro_negocio');
 });*/
-=======
 Route::get('/', function () {
     return view('welcome');
 });
->>>>>>> ae9e13b102fd0dbe32d58757f6c8795c0eb66002
