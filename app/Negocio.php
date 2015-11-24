@@ -16,9 +16,9 @@ class Negocio extends Model
       return $this->hasMany('App\Pedido');
     }
 
-    public function usuario()
+    public function user()
     {
-      return $this->hasMany('App\Usuario');
+      return $this->hasMany('App\User');
     }
 
     public function mesa()

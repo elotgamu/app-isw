@@ -15,7 +15,7 @@ class negociocontroller extends Controller
      */
     public function index()
     {
-    
+
     }
 
     /**
@@ -48,7 +48,7 @@ class negociocontroller extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**

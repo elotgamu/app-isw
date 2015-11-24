@@ -22,6 +22,7 @@ class User extends Model implements AuthenticatableContract,
      * @var string
      */
     protected $table = 'users';
+    protected $primaryKey = 'codigo_usuario';
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +37,14 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function negocio()
+    {
+      return $this->belongsTo('App\Negocio');
+    }
+
+    public function rol()
+    {
+      return $this->belongsTo('App\Rol');
+    }
 }

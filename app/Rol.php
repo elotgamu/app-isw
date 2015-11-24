@@ -11,8 +11,8 @@ class Rol extends Model
     protected $primaryKey = 'codigo_rol';
 
     //defino la relacion un rol tiene muchos usuarios
-    public function usuario()
+    public function user()
     {
-      return $this->hasMany('App\Usuario');
+      return $this->hasMany('App\User');
     }
 }

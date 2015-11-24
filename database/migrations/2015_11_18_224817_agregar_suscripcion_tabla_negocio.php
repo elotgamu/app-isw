@@ -13,8 +13,8 @@ class AgregarSuscripcionTablaNegocio extends Migration
     public function up()
     {
         Schema::table('negocio', function (Blueprint $table) {
-		$table->integer('suscripcion')->unsigned()->nullable();
-		$table->foreign('suscripcion')->references('codigo_suscripcion')->on('suscripcion');
+		        $table->integer('suscripcion')->unsigned()->nullable();
+		        $table->foreign('suscripcion')->references('codigo_suscripcion')->on('suscripcion')->onDelete('cascade');
             //
         });
     }
@@ -27,7 +27,7 @@ class AgregarSuscripcionTablaNegocio extends Migration
     public function down()
     {
         Schema::table('negocio', function (Blueprint $table) {
-		$table->dropColumn('suscripcion');
+		        $table->dropColumn('suscripcion');
             //
         });
     }

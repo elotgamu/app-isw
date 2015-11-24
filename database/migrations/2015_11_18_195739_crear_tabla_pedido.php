@@ -14,13 +14,13 @@ class CrearTablaPedido extends Migration
     {
         Schema::create('pedido', function (Blueprint $table) {
             $table->increments('codigo_pedido');
-	    $table->datetime('fecha_pedido');
-	    $table->string('direccion_pedido');
-	    $table->string('receptor_pedido', 20);
-	    $table->integer('negocio')->unsigned();
-	    $table->foreign('negocio')->references('codigo_negocio')->on('negocio');
-	    $table->integer('estado');
-	    $table->boolean('pago_pedido'); 
+	          $table->datetime('fecha_pedido');
+	          $table->string('direccion_pedido');
+	          $table->string('receptor_pedido', 20);
+	          $table->integer('negocio')->unsigned();
+	          $table->foreign('negocio')->references('codigo_negocio')->on('negocio')->onDelete('cascade');
+	          $table->integer('estado');
+	          $table->boolean('pago_pedido');
             $table->nullableTimestamps();
         });
     }
