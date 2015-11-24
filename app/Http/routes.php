@@ -12,7 +12,9 @@
 */
 Route::get('/', 'negocioController@create');
 Route::get('/home','negocioController@create');
-Route::get('/registro','registroController@create');
+Route::post('/home','negocioController@store');
+Route::get('/registro','addnegocioController@create');
+Route::post('/registro','addnegocioController@store');
 Route::get('/prueba', 'registroController@prueba');
 /*Route::controller('registrar_negocio');*/
 

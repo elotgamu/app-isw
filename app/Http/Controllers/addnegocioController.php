@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+/*use Illuminate\Http\Request;*/
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Request;
 use App;
 use \Validator, \Redirect;
 
-class negociocontroller extends Controller
+class addnegocioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +19,7 @@ class negociocontroller extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -28,7 +30,7 @@ class negociocontroller extends Controller
     public function create()
     {
         //
-       return View('formularios.registro_negocio');
+        return view('formularios.addnegocio');
     }
 
     /**
@@ -40,10 +42,15 @@ class negociocontroller extends Controller
     public function store(Request $request)
     {
         //
-        $input= Request::all();
+        $entrada= Request::all();
+
         $rules = [
-            'txtnuser' => 'required',
-            'txtpassword' => 'required|min:8',
+            'txtnegocio' => 'required',
+            'txtdireccion' => 'required',
+            'txtpropietario' => 'required',
+            'txtuser' => 'required',
+            'txtpass' => 'required',
+            'txtpass' => 'required|min:8',
         ];
 
         $messages =[
@@ -52,17 +59,41 @@ class negociocontroller extends Controller
             'unique' => 'Ya existe un negocio con ese nombre en la plataforma',
         ];
 
-        $validator =  Validator::make($input, $rules);
+        $validator =  Validator::make($entrada, $rules);
 
         if ($validator->fails())
         {
             // It failed
-          return  Redirect('/home')->withErrors($validator->messages())->withInput();
+          return  Redirect('/registro')->withErrors($validator->messages())->withInput();
         }
-        else
-        {
-          $info_user= App\Usuario::where('nombre_usuario','==',$input['txtnuser'])->get();
+        else {
+          # code...
+          /*guardamos los datos del negocio*/
+          $nego = new app\Negocio;
+          $nego->nombre_negocio= $entrada['txtnegocio'];
+          $nego->descipcion_negocio= $entrada['txtdescripcion'];
+          $nego->ubicacion_negocio= $entrada['txtdireccion'];
+          $nego->propietario_negocio= $entrada['txtpropietario'];
+          $nego->email_negocio= $entrada['email'];
+          $nego->telefono_negocio= $entrada['txttelefono'];
+          $nego->save();
+
+          /*luego obtenemos el id del ultimo negocio guardado*/
+          $last_nego = $nego->codigo_negocio;
+          /*Guardamos los datos del usuario*/
+          $user_nego = new App\Usuario;
+          $user_nego->nombre_usuario= $entrada['txtuser'];
+          $user_nego->passwd= $entrada['txtpass'];
+          $user_nego->estado= false;
+          $user_nego->negocio= $last_nego;
+          $user_nego->rol= 1;
+          $user_nego->save();
+          /*si todo queda bien redireccionamos a la misma pagina*/
+          $mensaje="Ya eres parte de la plataforma te invitamos a loguearte";
+            return  Redirect('/Home')->with('mensaje', $mensaje);
         }
+
+
     }
 
     /**
@@ -73,7 +104,7 @@ class negociocontroller extends Controller
      */
     public function show($id)
     {
-        dd($info_user);
+        //
     }
 
     /**
