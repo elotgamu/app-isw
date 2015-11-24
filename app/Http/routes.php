@@ -16,6 +16,7 @@ Route::post('/home','negocioController@store');
 Route::get('/registro','addnegocioController@create');
 Route::post('/registro','addnegocioController@store');
 Route::get('/prueba', 'registroController@prueba');
+Route::get('/login', 'loginController@create');
 /*Route::controller('registrar_negocio');*/
 
 /*Route::get('/', function () {

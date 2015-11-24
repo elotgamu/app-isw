@@ -15,7 +15,9 @@
 
           </div>
           </div>
-            <div class="col-md-4 center-block quitar espacio3 text-center margen">
+
+          <div class="col-md-4 center-block quitar espacio3 text-center margen">
+              <div class="row">
                    <div class="contenedor_info_landing">
                      <div class="login-form">
                       <div class="form-group">
@@ -23,10 +25,14 @@
                          <p>
                             <a href="{{ action("addnegocioController@create") }}" class="btn btn-primary">Crear un nuevo usuario</a>
                           </p>
+                          <p>
+                             <a href="{{ action("loginController@create") }}" class="btn btn-primary">Iniciar Sesión</a>
+                           </p>
                        </div>
                      </div>
                      </div>
                     </div>
+                </div>
             </div>
            </div>
          </div>

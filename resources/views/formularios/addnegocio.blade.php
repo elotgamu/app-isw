@@ -92,4 +92,4 @@
   {!! Form::close() !!}
 </div>
 </div>
-@strop
+@stop

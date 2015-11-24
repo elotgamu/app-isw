@@ -100,44 +100,6 @@
         <!-- /.container -->
     </nav>
   </div>
-    <div class="container">
-      <div class="col-sm-7"></div>
-      <div class="col-sm-5">
-        <div class="row">
-          {!! Form::open(['url'=>'home']) !!}
-          <div class="form-horizontal">
-            <div class="form-group">
-            <div class="col-xs-6 col-md-4">
-              {!! Form::text('txtnuser', null,array('placeholder' => 'Nombre de usuario', 'class' => 'form-control','autofocus')) !!}
-              @if( $errors->has('txtnuser') )
-              @foreach($errors->get('txtnuser') as $error )
-               <div class="alert alert-warning">
-                   Ingrese su usuario
-                </div>
-              @endforeach
-              @endif
-            </div>
-            <div class="col-xs-6 col-md-4">
-              {!! Form::text('txtpassword', null,array('placeholder' => 'Contraseña','class' => 'form-control')) !!}
-              @if( $errors->has('txtpassword') )
-              @foreach($errors->get('txtpassword') as $error )
-               <div class="alert alert-warning">
-                   La contraseña debe contener almenos 8 digitos
-                </div>
-              @endforeach
-              @endif
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <div class="btn-group">
-                {!! Form::submit('Iniciar sesión',array('class'=>'btn btn-default boton'))!!}
-              </div>
-            </div>
-            </div>
-            </div>
-            {!! Form::close() !!}
-        </div>
-      </div>
-    </div>
     <!--contenido-->
     <div class="row">
         @yield('content')
