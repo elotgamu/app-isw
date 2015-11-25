@@ -12,9 +12,10 @@
            <div class="form-group">
              {!! Form::label('negocio','Nombre del Negocio:', array('class'=> 'label')) !!}
              {!! Form::text('txtnegocio', null,array('placeholder' => 'EJ: comedor la Ceivita', 'class' => 'form-control')) !!}
-              @if( $errors->has('txtnegocio') )
+              @if($errors->has('txtnegocio') )
               @foreach($errors->get('txtnegocio') as $error )
-               <div class="errores">
+              <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                    Ingrese el nombre del negocio
                 </div>
               @endforeach
@@ -29,7 +30,8 @@
               {!! Form::text('txtdireccion',null,array('class' => 'form-control')) !!}
               @if( $errors->has('txtdireccion') )
               @foreach($errors->get('txtdireccion') as $error )
-               <div class="errores">
+              <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                    Especifique donde esta Ubicado el negocio
                 </div>
               @endforeach
@@ -38,13 +40,22 @@
             <div class="form-group">
               {!! Form::label('email','Dirección de correo electronico',array('class'=> 'label')) !!}
               {!! Form::email('email', null,array('placeholder' => 'EJ: juanlopez@ejemplo.com', 'class' => 'form-control')) !!}
+              @if( $errors->has('email') )
+              @foreach($errors->get('email') as $error )
+              <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  Ingrese el correo electronico del negocio
+                </div>
+              @endforeach
+              @endif
             </div>
             <div class="form-group">
               {!! Form::label('propietario','Nombre del propietario',array('class'=> 'label')) !!}
               {!! Form::text('txtpropietario',null,array('placeholder' => 'EJ: Juan Lopez','class' => 'form-control')) !!}
               @if( $errors->has('txtpropietario') )
               @foreach($errors->get('txtpropietario') as $error )
-               <div class="errores">
+              <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                    Agregue el propietario o gerente del negocio
                 </div>
               @endforeach
@@ -55,7 +66,8 @@
               {!! Form::text('txttelefono',null,array('pattern'=>'[0-9]{8}','id'=>'txttelefono','class' => 'form-control')) !!}
               @if( $errors->has('txttelefono') )
               @foreach($errors->get('txttelefono') as $error )
-               <div class="errores">
+              <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                    Agregue el numero telefonico del propietario o gerente
                 </div>
               @endforeach
@@ -66,7 +78,8 @@
               {!! Form::text('txtuser',null,array('placeholder' => 'EJ: Jlopez','class' => 'form-control')) !!}
               @if( $errors->has('txtuser') )
               @foreach($errors->get('txtuser') as $error )
-               <div class="errores">
+              <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                    Agrege un nombre de usuario
                 </div>
               @endforeach
@@ -77,8 +90,9 @@
               {!! Form::text('txtpass',null,array('placeholder' => 'EJ: 1234','class' => 'form-control')) !!}
               @if( $errors->has('txtpass') )
               @foreach($errors->get('txtpass') as $error )
-               <div class="errores">
-                   especifique la contraseña
+              <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                   La contraseña debe de contener de 8 digitos
                 </div>
               @endforeach
               @endif

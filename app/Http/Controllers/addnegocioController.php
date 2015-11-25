@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Request;
 use App;
 use \Validator, \Redirect;
+use Hash;
 
 class addnegocioController extends Controller
 {
@@ -48,8 +49,8 @@ class addnegocioController extends Controller
             'txtnegocio' => 'required',
             'txtdireccion' => 'required',
             'txtpropietario' => 'required',
+            'email' => 'required',
             'txtuser' => 'required',
-            'txtpass' => 'required',
             'txtpass' => 'required|min:8',
         ];
 
@@ -81,19 +82,17 @@ class addnegocioController extends Controller
           /*luego obtenemos el id del ultimo negocio guardado*/
           $last_nego = $nego->codigo_negocio;
           /*Guardamos los datos del usuario*/
-          $user_nego = new App\Usuario;
-          $user_nego->nombre_usuario= $entrada['txtuser'];
-          $user_nego->passwd= $entrada['txtpass'];
+          $user_nego = new App\User;
+          $user_nego->name= $entrada['txtuser'];
+          $user_nego->email= $entrada['email'];
+          $user_nego->password = Hash::make($entrada['txtpass']);
           $user_nego->estado= false;
           $user_nego->negocio= $last_nego;
           $user_nego->rol= 1;
           $user_nego->save();
           /*si todo queda bien redireccionamos a la misma pagina*/
-          $mensaje="Ya eres parte de la plataforma te invitamos a loguearte";
-            return  Redirect('/Home')->with('mensaje', $mensaje);
+          return  redirect('/login')->with('mensaje','Prueba');
         }
-
-
     }
 
     /**

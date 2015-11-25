@@ -3,8 +3,7 @@
     <title>@yield('title', 'Aprendiendo Laravel')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {!! HTML::style('css/bootstrap.min.css') !!}
-    {!! HTML::style('css/boots
-    trap-theme.css') !!}
+    {!! HTML::style('css/bootstrap-theme.css') !!}
     {!! HTML::style('css/bootstrap-theme.min.css') !!}
     {!! Html::style('css/bootstrap.css') !!}
     {!! Html::style('css/main.css') !!}

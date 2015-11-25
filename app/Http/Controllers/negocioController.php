@@ -40,29 +40,6 @@ class negociocontroller extends Controller
     public function store(Request $request)
     {
         //
-        $input= Request::all();
-        $rules = [
-            'txtnuser' => 'required',
-            'txtpassword' => 'required|min:8',
-        ];
-
-        $messages =[
-            'required' => 'El campo :attribute es obligatorio.',
-            'min' => 'El campo :attribute no puede tener menos de :min carácteres.',
-            'unique' => 'Ya existe un negocio con ese nombre en la plataforma',
-        ];
-
-        $validator =  Validator::make($input, $rules);
-
-        if ($validator->fails())
-        {
-            // It failed
-          return  Redirect('/home')->withErrors($validator->messages())->withInput();
-        }
-        else
-        {
-          $info_user= App\Usuario::where('nombre_usuario','==',$input['txtnuser'])->get();
-        }
     }
 
     /**

@@ -18,7 +18,7 @@ Route::get('/prueba', 'registroController@prueba');
 Route::get('/login', 'loginController@create');
 Route::post('/login', 'loginController@store');
 
-Route::get('login/Bienvenido', function($nombre){
+Route::get('colaboradores/{nombre}', function($nombre){
 	return "Mostrando el colaborador $nombre";
 });
 /*Route::controller('registrar_negocio');*/
