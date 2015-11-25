@@ -46,33 +46,33 @@ class addnegocioController extends Controller
         $entrada= Request::all();
 
         $rules = [
-            'txtnegocio' => 'required',
-            'txtdireccion' => 'required',
-            'txtpropietario' => 'required',
-            'email' => 'required',
-            'txtuser' => 'required',
-            'txtpass' => 'required|min:8',
+            'nombre' => 'required|unique:negocio,nombre_negocio|min:5',
+            'direccion' => 'required|min:15',
+            'propietario' => 'required|min:15',
+            'correo' => 'required|unique:user,email',
+            'usuario' => 'required|unique:user,name|min:5',
+            'contraseña' => 'required|min:8',
         ];
 
         $messages =[
-            'required' => 'El campo :attribute es obligatorio.',
-            'min' => 'El campo :attribute no puede tener menos de :min carácteres.',
-            'unique' => 'Ya existe un negocio con ese nombre en la plataforma',
+            'required' => ':attribute obligatorio.',
+            'min' => ':attribute debe tener almenos :min digitos.',
+            'unique' => ':attribute existente en la plataforma',
         ];
 
-        $validator =  Validator::make($entrada, $rules);
+        $validator =  Validator::make($entrada, $rules, $messages);
 
         if ($validator->fails())
         {
             // It failed
-          return  Redirect('/registro')->withErrors($validator->messages())->withInput();
+          return  Redirect('/registro')->withErrors($validator)->withInput();
         }
         else {
           # code...
           /*guardamos los datos del negocio*/
           $nego = new app\Negocio;
-          $nego->nombre_negocio= $entrada['txtnegocio'];
-          $nego->descipcion_negocio= $entrada['txtdescripcion'];
+          $nego->nombre_negocio= $entrada['nombre del negocio'];
+          $nego->descipcion_negocio= $entrada['descripcion'];
           $nego->ubicacion_negocio= $entrada['txtdireccion'];
           $nego->propietario_negocio= $entrada['txtpropietario'];
           $nego->email_negocio= $entrada['email'];
@@ -91,7 +91,8 @@ class addnegocioController extends Controller
           $user_nego->rol= 1;
           $user_nego->save();
           /*si todo queda bien redireccionamos a la misma pagina*/
-          return  redirect('/login')->with('mensaje','Prueba');
+          //
+          return  redirect('/login')->with('mensaje','prueba')->withInput();
         }
     }
 

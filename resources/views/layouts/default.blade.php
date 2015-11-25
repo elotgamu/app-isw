@@ -11,10 +11,11 @@
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
   </head>
 
-  <body>
+  <body class="index">
     <!-- Navigation -->
+    <header>
     <div class="row">
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -30,7 +31,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="about.html">Catalogo de negocios</a>
+                        <a href="{{ action("listanegocioController@create") }}">Catalogo de negocios</a>
                     </li>
                     <li>
                         <a href="services.html">Ultimas publicaciones</a>
@@ -99,6 +100,7 @@
         <!-- /.container -->
     </nav>
   </div>
+  </header>
     <!--contenido-->
     <div class="row">
         @yield('content')

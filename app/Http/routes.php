@@ -17,11 +17,12 @@ Route::post('/registro','addnegocioController@store');
 Route::get('/prueba', 'registroController@prueba');
 Route::get('/login', 'loginController@create');
 Route::post('/login', 'loginController@store');
+Route::get('/catalogo_negocios', 'listanegocioController@create');
+//Route::get('/login/{mensaje}','loginController@bienvenido');
 
-Route::get('login/Bienvenido', function($nombre){
-	return "Mostrando el colaborador $nombre";
-});
-/*Route::controller('registrar_negocio');*/
+/*Route::get('login/{mensaje}', function($mensaje){
+	 return view('formularios.login')->with('mensaje',$mensaje);
+});*/
 
 /*Route::get('/', function () {
     //return view('welcome');

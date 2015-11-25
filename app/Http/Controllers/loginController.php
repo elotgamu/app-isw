@@ -33,6 +33,12 @@ class loginController extends Controller
         return View('formularios.login')->with('mensaje','');
     }
 
+    public function mensaje()
+    {
+        //
+        return View('formularios.login')->with('mensaje','El registro fue completado te invitamos a Iniciar sesion');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -79,7 +85,7 @@ class loginController extends Controller
     }
     else {
         // validation not successful, send back to form
-        return Redirect::to('/login');
+        return Redirect('login/');
       }
     }
   }
@@ -95,7 +101,7 @@ class loginController extends Controller
     {
         //
     }
-
+    
 
     /**
      * Show the form for editing the specified resource.

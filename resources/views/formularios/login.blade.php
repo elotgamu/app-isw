@@ -1,11 +1,20 @@
 @extends ('layouts.default')
-@section ('title') Registrarme
+@section ('title') Iniciar Sesión
 @stop
 
 @section ('content')
-<h1> Hola {{ $mensaje }} </h1>
-<div class="col-md-4 center-block quitar espacio3 text-center margen">
-              {!! Form::open(['url'=>'login']) !!}
+<div class="landing-page-container">
+<div class="col-md-5 center-block quitar espacio3 text-center margen">
+       {!! Form::open(['url'=>'login']) !!}
+           <div class="login-form">
+               {{-- Preguntamos si hay algún mensaje de error y si hay lo mostramos  --}}
+                    @if(Session::has('mensaje'))
+                    <div class="alert alert-warning alert-dismissable">
+                       <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      {{ Session::get('mensaje') }}
+                      </div>
+                     @endif
+            </div>
               <div class="login-form">
                 <div class="form-group">
                   {!! Form::text('txtnuser', null,array('placeholder' => 'Nombre de usuario', 'class' => 'form-control','autofocus')) !!}
@@ -34,7 +43,7 @@
                     {!! Form::submit('Iniciar sesiÃ³n',array('class'=>'btn btn-default boton'))!!}
                   </div>
                 </div>
-                </div>
                 {!! Form::close() !!}
           </div>
+</div>
 @stop
