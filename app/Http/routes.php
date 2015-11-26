@@ -18,11 +18,7 @@ Route::get('/prueba', 'registroController@prueba');
 Route::get('/login', 'loginController@create');
 Route::post('/login', 'loginController@store');
 Route::get('/catalogo_negocios', 'listanegocioController@create');
-//Route::get('/login/{mensaje}','loginController@bienvenido');
-
-/*Route::get('login/{mensaje}', function($mensaje){
-	 return view('formularios.login')->with('mensaje',$mensaje);
-});*/
+Route::post('/catalogo_negocios','listanegocioController@store');
 
 /*Route::get('/', function () {
     //return view('welcome');

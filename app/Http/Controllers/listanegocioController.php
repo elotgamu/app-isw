@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App;
@@ -41,6 +40,16 @@ class listanegocioController extends Controller
     public function store(Request $request)
     {
         //
+        $entrada= Request::all();
+        if(!isset($entrada['busqueda']))
+        {
+            return  redirect('/catalogo_negocios');
+        }
+        else
+        {
+          $listanegocio=app\Negocio::where('nombre_negocio', 'LIKE', '%'.$entrada['busqueda'].'%')->get();
+          return  View('formularios.catalogonegocio')->with('lista',$listanegocio);
+        }
     }
 
     /**

@@ -3,11 +3,12 @@
 
 @section ('content')
 <div class="col-md-4 center-block quitar espacio3 text-center margen">
-  <div  class="contenedor_registro" >
+  <div  class="panel panel-primary" >
+    <div class="panel-heading">
+    <h3 class="panel-title">Informacion del negocio</h3>
+    </div>
+  <div class="panel-body">
   {!! Form::open(['url'=>'registro']) !!}
-  <div class="row">
-  </div>
-     {!! Form::label('titulo','Datos del negocio', array('id'=>'div_registro','class'=> 'titulos')) !!}
          <div class="login-form">
            <div class="form-group">
              {!! Form::label('negocio','Nombre:', array('class'=> 'label')) !!}
@@ -49,7 +50,7 @@
               @endforeach
               @endif
             </div>
-            
+
               <div class="form-group">
               {!! Form::label('Telefono','Telefono',array('class'=> 'label')) !!}
               {!! Form::text('telefono',null,array('pattern'=>'[0-9]{8}','id'=>'txttelefono','class' => 'form-control')) !!}
@@ -62,10 +63,16 @@
               @endforeach
               @endif-->
             </div>
-            
-            {!! Form::label('titulo','Datos de usuario', array('id'=>'div_registro','class'=> 'titulos')) !!}
-            
-            <div class="form-group">
+          </div>
+        </div>
+      </div>
+
+      <div  class="panel panel-primary" >
+        <div class="panel-heading">
+        <h3 class="panel-title">Informacion del usuario</h3>
+        </div>
+      <div class="panel-body">
+              <div class="form-group">
               {!! Form::label('propietario','Propietario',array('class'=> 'label')) !!}
               {!! Form::text('propietario',null,array('placeholder' => 'EJ: Juan Lopez','class' => 'form-control')) !!}
               @if( $errors->has('propietario') )
@@ -77,7 +84,7 @@
               @endforeach
               @endif
             </div>
-          
+
             <div class="form-group">
               {!! Form::label('user','Nombre de usuario',array('class'=> 'label')) !!}
               {!! Form::text('usuario',null,array('placeholder' => 'EJ: Jlopez','class' => 'form-control')) !!}
@@ -109,6 +116,7 @@
             </div>
         </div>
   {!! Form::close() !!}
+  </div>
 </div>
 </div>
 @stop

@@ -1,5 +1,5 @@
 @extends ('layouts.default')
-@section ('title') Iniciar Sesión
+@section ('title') Iniciar Sesiï¿½n
 @stop
 
 @section ('content')
@@ -7,9 +7,9 @@
 <div class="col-md-5 center-block quitar espacio3 text-center margen">
        {!! Form::open(['url'=>'login']) !!}
            <div class="login-form">
-               {{-- Preguntamos si hay algún mensaje de error y si hay lo mostramos  --}}
+               {{-- Preguntamos si hay algï¿½n mensaje de error y si hay lo mostramos  --}}
                     @if(Session::has('mensaje'))
-                    <div class="alert alert-warning alert-dismissable">
+                    <div class="alert alert-info alert-dismissable">
                        <button type="button" class="close" data-dismiss="alert">&times;</button>
                       {{ Session::get('mensaje') }}
                       </div>
