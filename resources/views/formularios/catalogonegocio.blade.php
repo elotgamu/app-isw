@@ -4,6 +4,11 @@
 @section ('content')
 <div class="landing-page-container">
 <div class="row">
+<br>
+<br>
+<br>
+</div>
+<div class="row">
 <div class="container">
   <div class="list-group">
   @foreach ($lista as $Lista)

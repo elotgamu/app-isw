@@ -4,7 +4,7 @@
 
 @section ('content')
 <!--lp7-container-->
-<div>
+<div class="lp7-container">
   <div class="landing-page-container">
     <div class="banner-container">
       <div class="container">

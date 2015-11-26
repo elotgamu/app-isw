@@ -49,8 +49,8 @@ class addnegocioController extends Controller
             'nombre' => 'required|unique:negocio,nombre_negocio|min:5',
             'direccion' => 'required|min:15',
             'propietario' => 'required|min:15',
-            'correo' => 'required|unique:user,email',
-            'usuario' => 'required|unique:user,name|min:5',
+            'correo' => 'required|unique:users,email',
+            'usuario' => 'required|unique:users,name|min:5',
             'contraseña' => 'required|min:8',
         ];
 
@@ -71,28 +71,27 @@ class addnegocioController extends Controller
           # code...
           /*guardamos los datos del negocio*/
           $nego = new app\Negocio;
-          $nego->nombre_negocio= $entrada['nombre del negocio'];
+          $nego->nombre_negocio= $entrada['nombre'];
           $nego->descipcion_negocio= $entrada['descripcion'];
-          $nego->ubicacion_negocio= $entrada['txtdireccion'];
-          $nego->propietario_negocio= $entrada['txtpropietario'];
-          $nego->email_negocio= $entrada['email'];
-          $nego->telefono_negocio= $entrada['txttelefono'];
+          $nego->ubicacion_negocio= $entrada['direccion'];
+          $nego->propietario_negocio= $entrada['propietario'];
+          $nego->telefono_negocio= $entrada['telefono'];
           $nego->save();
 
           /*luego obtenemos el id del ultimo negocio guardado*/
           $last_nego = $nego->codigo_negocio;
           /*Guardamos los datos del usuario*/
           $user_nego = new App\User;
-          $user_nego->name= $entrada['txtuser'];
-          $user_nego->email= $entrada['email'];
-          $user_nego->password = Hash::make($entrada['txtpass']);
+          $user_nego->name= $entrada['usuario'];
+          $user_nego->email= $entrada['correo'];
+          $user_nego->password = Hash::make($entrada['contraseña']);
           $user_nego->estado= false;
           $user_nego->negocio= $last_nego;
           $user_nego->rol= 1;
           $user_nego->save();
           /*si todo queda bien redireccionamos a la misma pagina*/
           //
-          return  redirect('/login')->with('mensaje','prueba')->withInput();
+          return  redirect('/login')->with('mensaje','Su registro se ha completado le invitamos a iniciar sesión')->withInput();
         }
     }
 
