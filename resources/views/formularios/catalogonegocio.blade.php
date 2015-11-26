@@ -30,7 +30,7 @@
   </div>
   <div class="panel-body">
 <div class="list-group">
-  @if(count($errors)>0)
+  @if(count($lista)>0)
   @foreach ($lista as $Lista)
                 <div href="#" class="list-group-item list-group-item-success">
                   <div class="container">
@@ -52,7 +52,7 @@
   @endforeach
   @else
   <div class="alert alert-info">
-      <p class="list-group-item-text">No se ha encontrado ningun restaurante y comedor con ese nombre</p>
+      <p class="list-group-item-text">No se ha encontrado ningun Negocio</p>
   </div>
   @endif
 </div>

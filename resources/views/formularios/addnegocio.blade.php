@@ -38,19 +38,6 @@
               @endforeach
               @endif
             </div>
-            <div class="form-group">
-              {!! Form::label('email','Dirección de correo electronico',array('class'=> 'label')) !!}
-              {!! Form::email('correo', null,array('placeholder' => 'EJ: juanlopez@ejemplo.com', 'class' => 'form-control')) !!}
-              @if( $errors->has('correo') )
-              @foreach($errors->get('correo') as $error )
-              <div class="alert alert-warning alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                 {{$error}}
-                </div>
-              @endforeach
-              @endif
-            </div>
-
               <div class="form-group">
               {!! Form::label('Telefono','Telefono',array('class'=> 'label')) !!}
               {!! Form::text('telefono',null,array('pattern'=>'[0-9]{8}','id'=>'txttelefono','class' => 'form-control')) !!}
@@ -80,6 +67,19 @@
               <div class="alert alert-warning alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                    {{$error}}
+                </div>
+              @endforeach
+              @endif
+            </div>
+
+            <div class="form-group">
+              {!! Form::label('email','Correo electronico',array('class'=> 'label')) !!}
+              {!! Form::email('correo', null,array('placeholder' => 'EJ: juanlopez@ejemplo.com', 'class' => 'form-control')) !!}
+              @if( $errors->has('correo') )
+              @foreach($errors->get('correo') as $error )
+              <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                 {{$error}}
                 </div>
               @endforeach
               @endif
