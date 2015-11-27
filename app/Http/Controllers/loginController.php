@@ -81,7 +81,7 @@ class loginController extends Controller
         // redirect them to the secure section or whatever
         // return Redirect::to('secure');
         // for now we'll just echo success (even though echoing in a controller is bad)
-        //return Redirect::to('/prueba')->with('mensaje', 'Login Failed');;
+        //return Redirect::to('test.route', array('id' => '1',  'something' => 'here',  'another' => 'there'));
         echo 'SUCCESS!' . $userdata['name'];
     }
     else {

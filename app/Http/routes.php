@@ -20,6 +20,10 @@ Route::post('/login', 'loginController@store');
 Route::get('/catalogo_negocios', 'listanegocioController@create');
 Route::post('/catalogo_negocios','listanegocioController@store');
 
+Route::get('/{id}', array('as' => 'test.route', function($id){
+    return $id;
+}));
+
 /*Route::get('/', function () {
     //return view('welcome');
     return view('formularios.registro_negocio');

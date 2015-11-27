@@ -14,7 +14,7 @@
 <div class="row">
   <div class="container">
     <div class="input-group">
-    {!! Form::text('busqueda',null,array('placeholder' => 'Busque su restaurante o comedor de preferencia','class' => 'form-control')) !!}
+    {!! Form::text('busqueda',Input::old('busqueda'),array('placeholder' => 'Busque su restaurante o comedor de preferencia','class' => 'form-control')) !!}
     <span class="input-group-btn">
       {!! Form::submit('Buscar',array('class'=>'btn btn-default btn-group-xs boton'))!!}
     </span>
