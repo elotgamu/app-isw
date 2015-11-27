@@ -2,10 +2,9 @@
 @section ('title') Catalogo de negocios @stop
 
 @section ('content')
-{!! Form::open(['url'=>'catalogo_negocios']) !!}
-<div class="landing-page-container">
+<div class="container">
+  {!! Form::open(['url'=>'catalogo_negocios']) !!}
 <div class="row">
-  <br>
   <br>
   <br>
   <br>
@@ -14,7 +13,12 @@
 <div class="row">
   <div class="container">
     <div class="input-group">
-    {!! Form::text('busqueda',Input::old('busqueda'),array('placeholder' => 'Busque su restaurante o comedor de preferencia','class' => 'form-control')) !!}
+    @if(!isset($busqueda))
+          {!! Form::text('busqueda',null,array('placeholder' => 'Busque su restaurante o comedor de preferencia','class' => 'form-control','autofocus')) !!}
+    @else
+            {!! Form::text('busqueda', $busqueda, array('class' => 'form-control','autofocus')) !!}
+    @endif
+
     <span class="input-group-btn">
       {!! Form::submit('Buscar',array('class'=>'btn btn-default btn-group-xs boton'))!!}
     </span>
@@ -23,7 +27,7 @@
   <br>
 </div>
 <div class="row">
-  <div class="container">
+<div class="container">
 <div class="panel panel-primary">
   <div class="panel-heading">
   <h3 class="panel-title">Negocios registrados</h3>
@@ -38,7 +42,7 @@
                     <h2 class="list-group-item-heading">{{ $Lista->nombre_negocio }}</h4>
                     <p class="list-group-item-text">Telefono No: {{ $Lista->telefono_negocio }}</p>
                   </div>
-                  <div class="col-md-5">
+                  <div class="col-md-4">
                    <div class="row">
                    <br>
                    </div>
@@ -60,6 +64,6 @@
 </div>
 </div>
 </div>
-</div>
 {!! Form::close() !!}
+</div>
 @stop
