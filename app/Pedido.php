@@ -15,4 +15,16 @@ class Pedido extends Model
     {
       return $this->belongsTo('App\Negocio');
     }
+
+    //defino la relacion muchos a muchos de pedido producto
+    // 1) el modelo al que apunta
+    // 2) la tabla muchos a muchos(su nombre real)
+    // 3) primera FK
+    // 4) segunda FK
+    // withPivot -- define los atributos que no son FK
+    // withTimestamps -- habilita los timestamps para campos created_at y updated_at
+    public function producto()
+    {
+      return $this->belongsToMany('App\Producto', 'pedido_producto', 'pedido', 'producto')->withPivot('cantidad_producto')->withTimestamps();
+    }
 }
