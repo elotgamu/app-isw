@@ -12,7 +12,7 @@
          <div class="login-form">
            <div class="form-group">
              {!! Form::label('negocio','Nombre:', array('class'=> 'label')) !!}
-             {!! Form::text('nombre', null,array('placeholder' => 'EJ: comedor la Ceivita', 'class' => 'form-control')) !!}
+             {!! Form::text('nombre', null,array('placeholder' => 'EJ: comedor la Ceibita', 'class' => 'form-control')) !!}
               @if($errors->has('nombre'))
               @foreach($errors->get('nombre') as $error )
               <div class="alert alert-warning alert-dismissable">
@@ -99,7 +99,7 @@
             </div>
             <div class="form-group">
               {!! Form::label('pass','Contraseña',array('class'=> 'label')) !!}
-              {!! Form::text('contraseña',null,array('placeholder' => 'EJ: 1234','class' => 'form-control')) !!}
+              {!! Form::password('contraseña', array('placeholder' => 'EJ: PaSsW0rD','class' => 'form-control')) !!}
               @if( $errors->has('contraseña') )
               @foreach($errors->get('contraseña') as $error )
               <div class="alert alert-warning alert-dismissable">
