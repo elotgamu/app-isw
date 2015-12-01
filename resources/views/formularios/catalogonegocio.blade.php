@@ -20,7 +20,7 @@
     @endif
 
     <span class="input-group-btn">
-      {!! Form::submit('Buscar',array('class'=>'btn btn-default btn-group-xs boton'))!!}
+      {!! Form::submit('Buscar', array('name' =>'buscar', 'class'=>'btn btn-default btn-group-xs boton'))!!}
     </span>
   </div>
   </div>
@@ -39,7 +39,7 @@
                 <div href="#" class="list-group-item list-group-item-success">
                   <div class="container">
                   <div class="col-md-7">
-                    <h2 class="list-group-item-heading">{{ $Lista->nombre_negocio }}</h4>
+                    <h2 class="list-group-item-heading">{{ $Lista->nombre_negocio }}</h2>
                     <p class="list-group-item-text">Telefono No: {{ $Lista->telefono_negocio }}</p>
                   </div>
                   <div class="col-md-4">
@@ -47,8 +47,13 @@
                    <br>
                    </div>
                    <div class="row">
-                          <button type="button" class="btn btn-default btn-group-xs boton">Ver menu</button>
-                          <button type="button" class="btn btn-default btn-group-xs boton">ver informacion del negocio</button>
+                          <!--<input type="submit" name="menu" class="btn btn-default btn-group-xs boton">Ver menú</input> -->
+                          {!! Form::submit('Ver menú', array('name' =>'menu', 'class'=>'btn btn-default btn-group-xs boton')) !!}
+                          <!--<button type="button" class="btn btn-default btn-group-xs boton">ver información del negocio</button> -->
+                          <!--{!! Form::submit('Ver información del negocio', array('class'=>'btn btn-default btn-group-xs boton'))!!} -->
+                          {!! Form::submit('Ver información', array('name' =>'detalles', 'class'=>'btn btn-default btn-group-xs boton')) !!}
+                          {!! Form::hidden('id_negocio', $Lista->codigo_negocio ) !!}
+                          <!-- <input type="submit" name="detalles" class="btn btn-default btn-group-xs boton" value="Información"> -->
                    </div>
                   </div>
                 </div>

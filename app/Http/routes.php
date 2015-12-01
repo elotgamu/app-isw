@@ -19,6 +19,15 @@ Route::get('/login', 'loginController@create');
 Route::post('/login', 'loginController@store');
 Route::get('/catalogo_negocios', 'listanegocioController@create');
 Route::post('/catalogo_negocios','listanegocioController@store');
+//Route::post('/catalogo_negocios', array('uses' => 'listanegocioController@prueba'));
+
+// copiado de Robert
+Route::get('/cpanel', 'cpanelController@create');
+Route::get('/micontenido','contenidosController@create');
+Route::post('/micontenido','contenidosController@store');
+//para la desc
+//Route::get('/catalogo_negocios/{Lista}', 'listanegocioController@mostrar_detalles');
+//Route::post('/catalogo_negocios', 'listanegocioController@prueba');
 
 Route::get('/{id}', array('as' => 'test.route', function($usuario){
     echo $usuario;

@@ -53,15 +53,63 @@ class listanegocioController extends Controller
         }
     }
 
+    public function buscar($coincidencia)
+    {
+      //dd($coincidencia);
+      if (!isset($coincidencia))
+      {
+        //return redirect('/catalogo_negocios');
+        dd("no ha buscado nada");
+      }
+      else
+      {
+        $listanegocio=app\Negocio::where('nombre_negocio', 'LIKE', '%'.$coincidencia.'%')->get();
+        return  View('formularios.catalogonegocio',array('lista' => $listanegocio, 'busqueda'=>$coincidencia));
+      }
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $id)
     {
-        //
+      $entrada = Request::all();
+      $negocio = App\Negocio::where('codigo_negocio', $entrada['codigo_negocio'])->get(['descipcion_negocio']);
+      //return view('formularios.detalles_negocio', array('negocio' => $negocio, 'codigo_negocio' => $entrada['codigo_negocio']));
+      dd($entrada);
+      //$negocio =App\Negocio::where('nombre_negocio', $id)->get(['descipcion_negocio']);
+      //dd($negocio);
+    }
+
+    public function prueba(Request $request)
+    {
+      //$entrada = Request::all();
+
+      if (Request::get('detalles'))
+      {
+        $entrada = Request::Input('id_negocio');
+        dd($entrada);
+        //dd($entrada['id_negocio']);
+      //  $id = $entrada[lista];
+        //$this->show($id);
+      }
+      elseif (Request::get('buscar'))
+      {
+        $entrada = Request::Input('busqueda');
+        //dd($entrada['busqueda']);
+        //dd($entrada);
+        $this->buscar($entrada);
+      }
+      else
+      {
+        dd("que pasó");
+      }
+      //$negocio = app\Negocio::where('nombre_negocio', $dts_negocio)->get(['descipcion_negocio']);
+      //return View('formularios.detalles_negocio', array('negocio' => $negocio, 'nombre_negocio'=>$dts_negocio));
+      //return dd($negocio);
     }
 
     /**
