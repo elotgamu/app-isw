@@ -23,15 +23,17 @@ Route::post('/catalogo_negocios','listanegocioController@store');
 
 // copiado de Robert
 Route::get('/cpanel', 'cpanelController@create');
-Route::get('/micontenido','contenidosController@create');
-Route::post('/micontenido','contenidosController@store');
+Route::get('/mi_contenido','contenidosController@create');
+Route::post('/mi_contenido','contenidosController@store');
 //para la desc
 //Route::get('/catalogo_negocios/{Lista}', 'listanegocioController@mostrar_detalles');
 //Route::post('/catalogo_negocios', 'listanegocioController@prueba');
 
-Route::get('/{id}', array('as' => 'test.route', function($usuario){
-    echo $usuario;
-}));
+//Route::get('/{usuario}/micontendio','contenidosController@create');
+
+/*Route::get('/{usuario}/micontendio', array('as' => 'user.cpanel', function($usuario){
+    return view('formularios.contenidos');
+}));*/
 
 /*Route::get('/', function () {
     //return view('welcome');

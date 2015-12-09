@@ -30,6 +30,7 @@ class loginController extends Controller
     public function create()
     {
         //
+        /*al cargar la vista obtenemos la dirección */
         return View('formularios.login')->with('mensaje','');
     }
 
@@ -81,8 +82,8 @@ class loginController extends Controller
         // redirect them to the secure section or whatever
         // return Redirect::to('secure');
         // for now we'll just echo success (even though echoing in a controller is bad)
-        //return Redirect()->route('test.route', ['usuario' =>  $userdata['name']]);
-        return Redirect::to('/micontenido')->withInput();
+        //return Redirect()->route('/{usuario}/micontendio', ['usuario' =>  $userdata['name']]);
+        return Redirect::to('/mi_contenido');
         //echo 'SUCCESS!' . $userdata['name'];
     }
     else {

@@ -4542,11 +4542,18 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+  /*background-color: #f8f8f8;*/
+  background: #222A20;
+  border-color: #222A20;
+  opacity: 0.95;
+  filter:  alpha(opacity=95);
 }
 .navbar-default .navbar-brand {
-  color: #777;
+  /*color: #777;*/
+color: white;
+font-family: 'Segoe UI';
+font-size: 20px;
+font-weight: normal;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -4557,11 +4564,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #777;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777;
+  color: white;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #333;
+  color: #5e5e5e;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
@@ -4577,14 +4584,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
-  border-color: #ddd;
+  border-color: #222A20;
+  background-color:#222A20;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #ddd;
+  background-color: #364732;
 }
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #888;
+  background-color: #bd783f;
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {

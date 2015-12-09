@@ -48,8 +48,7 @@ class listanegocioController extends Controller
         else
         {
           $listanegocio=app\Negocio::where('nombre_negocio', 'LIKE', '%'.$entrada['busqueda'].'%')->get();
-          return  View('formularios.catalogonegocio',array('lista' => $listanegocio, 'busqueda'=>$entrada['busqueda']));
-          //->with('lista',$listanegocio,'busqueda',$entrada['busqueda']);
+          return View('formularios.catalogonegocio',array('lista' => $listanegocio, 'busqueda'=>$entrada['busqueda']));
         }
     }
 

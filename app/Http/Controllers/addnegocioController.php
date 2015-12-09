@@ -10,6 +10,7 @@ use Request;
 use App;
 use \Validator, \Redirect;
 use Hash;
+use File;
 
 class addnegocioController extends Controller
 {
@@ -76,6 +77,7 @@ class addnegocioController extends Controller
           $nego->ubicacion_negocio= $entrada['direccion'];
           $nego->propietario_negocio= $entrada['propietario'];
           $nego->telefono_negocio= $entrada['telefono'];
+          $nego->menu_negocio='';
           $nego->save();
 
           /*luego obtenemos el id del ultimo negocio guardado*/
@@ -89,6 +91,8 @@ class addnegocioController extends Controller
           $user_nego->negocio= $last_nego;
           $user_nego->rol= 1;
           $user_nego->save();
+
+          File::makeDirectory('/var/www/app-isw/public/negocios/'.str_replace(' ', '',$nego->nombre_negocio), $mode = 0777, true, true);
           /*si todo queda bien redireccionamos a la misma pagina*/
           //
           return  redirect('/login')->with('mensaje','Su registro se ha completado le invitamos a iniciar sesión')->withInput();

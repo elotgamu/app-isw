@@ -3,16 +3,15 @@
 @stop
 
 @section ('content')
-<!--lp7-container-->
 <div class="lp7-container">
   <div class="landing-page-container">
     <div class="banner-container">
       <div class="container">
-        <div class="topbar-row clearfix">
+        <!--<div class="topbar-row clearfix">
           <div class="col-sm-7"></div>
           <div class="col-sm-5">
           </div>
-          </div>
+        </div>-->
           <div class="col-md-4 center-block quitar espacio3 text-center margen">
               <div class="row">
                    <div class="contenedor_info_landing">
@@ -31,7 +30,7 @@
                     </div>
                 </div>
             </div>
-           </div>
+          </div>
          </div>
                </div>
             </div>

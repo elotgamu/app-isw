@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Fileentry;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Http\Response;
+use Auth;
+use App;
 
 class contenidosController extends Controller
 {
@@ -27,7 +32,8 @@ class contenidosController extends Controller
     public function create()
     {
         //
-        return view('formularios.contenidos');
+          $negocio = App\Negocio::find(Auth::user()->negocio);
+          return view('formularios.contenidos')->with('ruta_menu', 'http://isw.cloudapp.net/pdfjs/web/viewer.html?File=http://isw.cloudapp.net/'.$negocio['menu_negocio']);
     }
 
     /**
@@ -39,8 +45,17 @@ class contenidosController extends Controller
     public function store(Request $request)
     {
         //
-        $entrada=Request::all();
-        return $entrada['openFile'];
+        $entrada=Request::file('openFile');
+        //busco el id del negocio que tiene el usuario
+        $negocio = App\Negocio::find(Auth::user()->negocio);
+        //subimos el archivo al servidor
+        $extension = $entrada->getClientOriginalExtension();
+        $entrada->move(base_path() .'/public/negocios/'.str_replace(' ', '', $negocio['nombre_negocio']).'/','menu_'.str_replace(' ', '', $negocio['nombre_negocio']).'.'.$extension);
+
+        //actualizamos la ruta de acceso al menu
+      $negocio->menu_negocio='negocios/'.str_replace(' ', '', $negocio['nombre_negocio']).'/menu_'.str_replace(' ', '', $negocio['nombre_negocio']).'.'.$extension;
+      $negocio->save();
+		  return redirect('/mi_contenido');
     }
 
     /**

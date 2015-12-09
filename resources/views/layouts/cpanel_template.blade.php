@@ -23,96 +23,81 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ action("negocioController@create") }}">Plataforma gastronomica publicitaria</a>
+                <a class="navbar-brand" href="#">Plataforma gastronomica publicitaria</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#menu-toggle" id="menu-toggle">Opciones</a></li>
                   <li><a href="#">Perfil</a></li>
                   <li><a href="#">Configuraciones</a></li>
                   <li><a href="#">Usuarios</a></li>
                   <li><a href="#">Ayuda</a></li>
-                    <!--<li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="portfolio-1-col.html">1 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-2-col.html">2 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-3-col.html">3 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-4-col.html">4 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-item.html">Single Portfolio Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="blog-home-1.html">Blog Home 1</a>
-                            </li>
-                            <li>
-                                <a href="blog-home-2.html">Blog Home 2</a>
-                            </li>
-                            <li>
-                                <a href="blog-post.html">Blog Post</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="full-width.html">Full Width Page</a>
-                            </li>
-                            <li>
-                                <a href="sidebar.html">Sidebar Page</a>
-                            </li>
-                            <li>
-                                <a href="faq.html">FAQ</a>
-                            </li>
-                            <li>
-                                <a href="404.html">404</a>
-                            </li>
-                            <li>
-                                <a href="pricing.html">Pricing Table</a>
-                            </li>-->
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </div>
 
-    <div class="lp7-container">
-    <br>
-    <br>
-    <br>
-      <div class="col-md-2">
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li>
+                              <a href="#">Ver perfil</a>
+                          </li>
+                          <li>
+                              <a href="#">Cerrar Sesión</a>
+                          </li>
+                      </ul>
+                  </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+            <!-- /.navbar-collapse -->
+</div>
+        <!-- /.container -->
+</div>
+     <div id="wrapper">
+       <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              <br>
+              <br>
+              <br>
+                <li>
+                    <a href="{{ action("contenidosController@create") }}">Mi contenido</a>
+                </li>
+                <li>
+                    <a href="#">Pedidos</a>
+                </li>
+                <li>
+                    <a href="#">Reservaciones</a>
+                </li>
+                <li>
+                    <a href="#">Categorias</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+              <br>
+              <br>
+              <br>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                          @yield('worksheets')
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+      <!--<div class="col-lg-2 col-md-2 col-sm-2">
         <ul class="nav nav-pills nav-stacked">
-          <li class="active" role="presentation"><a  href="{{ action("contenidosController@create") }}">Mis contenidos</a></li>
-          <li role="presentation"><a href="#">Profile</a></li>
-          <li role="presentation"><a href="#">Messages</a></li>
+          <li class="active" role="presentation"><a  href="{{ action("contenidosController@create") }}">Mi contenido</a></li>
+          <li role="presentation"><a href="#">Pedidos</a></li>
+          <li role="presentation"><a href="#">Reservaciones</a></li>
         </ul>
       </div>
-      <div class="col-md-9">
-        <div>
-        @yield('worksheets')
-        </div>
-      </div>
-    </div>
+      <div class="col-lg-10 col-md-10 col-sm-10">
+      </div>-->
     <!--<div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
@@ -135,5 +120,13 @@
         {!! Html::script('js/main.js') !!}
         {!! Html::script('js/bootstrap-filestyle.min.js') !!}
         {!! Html::script('js/bootstrap-filestyle.js') !!}
+        <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
   </body>
 </html>

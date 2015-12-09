@@ -6,7 +6,7 @@
 <div class="landing-page-container">
 <div class="col-md-5 center-block quitar espacio3 text-center margen">
        {!! Form::open(['url'=>'login']) !!}
-       <input  type = "hidden"  name = "_token"  value = "{{{csrf_token ()}}}"  />
+       <!--<input  type = "hidden"  name = "_token"  value = "{{{csrf_token ()}}}"  />-->
            <div class="login-form">
                {{-- Preguntamos si hay alg�n mensaje de error y si hay lo mostramos  --}}
                     @if(Session::has('mensaje'))
