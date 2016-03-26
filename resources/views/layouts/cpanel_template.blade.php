@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>@yield('title', 'Aprendiendo Laravel')</title>
+    <title>@yield('title', 'Mi contenido')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {!! HTML::style('css/bootstrap.min.css') !!}
     {!! HTML::style('css/bootstrap-theme.css') !!}
@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Plataforma gastronomica publicitaria</a>
+                <a class="navbar-brand" href="{{ URL::to('/')}}">Plataforma gastronomica publicitaria</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -41,7 +41,7 @@
                               <a href="#">Ver perfil</a>
                           </li>
                           <li>
-                              <a href="#">Cerrar Sesión</a>
+                              <a href="{{ URL::to('/logout') }}">Cerrar Sesión</a>
                           </li>
                       </ul>
                   </li>

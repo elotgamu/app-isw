@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App;
+
+use App\Http\Middleware\Authenticate;
 use Session;
 use \Validator, \Redirect;
 
@@ -88,7 +90,7 @@ class loginController extends Controller
     }
     else {
         // validation not successful, send back to form
-        return Redirect('/login');
+        return Redirect('/login')->with('mensaje', '¡Los datos de usuario o contraseña son inválidos!');
       }
     }
   }
@@ -135,8 +137,10 @@ class loginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        // aqui sacamos al usuario de su sesion
+        Auth::logout();
+        return Redirect::to('/')->with('mensaje', 'Ha cerrado su sesión correctamente');
     }
 }

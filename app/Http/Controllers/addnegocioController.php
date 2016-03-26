@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 /*use Illuminate\Http\Request;*/
-
+use Mail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Request;
 use App;
+use App\User;
 use \Validator, \Redirect;
 use Hash;
 use File;
+
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class addnegocioController extends Controller
 {
@@ -43,9 +46,10 @@ class addnegocioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //obtenemos los datos ingresados
         $entrada= Request::all();
 
+        // reglas de validacion
         $rules = [
             'nombre' => 'required|unique:negocio,nombre_negocio|min:5',
             'direccion' => 'required|min:15',
@@ -82,6 +86,10 @@ class addnegocioController extends Controller
 
           /*luego obtenemos el id del ultimo negocio guardado*/
           $last_nego = $nego->codigo_negocio;
+
+          /* generamos el token de activacion del usuario*/
+          $token = str_random(60);
+
           /*Guardamos los datos del usuario*/
           $user_nego = new App\User;
           $user_nego->name= $entrada['usuario'];
@@ -90,12 +98,34 @@ class addnegocioController extends Controller
           $user_nego->estado= false;
           $user_nego->negocio= $last_nego;
           $user_nego->rol= 1;
+          $user_nego->token= $token;
           $user_nego->save();
 
-          File::makeDirectory('/var/www/app-isw/public/negocios/'.str_replace(' ', '',$nego->nombre_negocio), $mode = 0777, true, true);
+          // enviamos el email de confimacion basados en un vista
+          Mail::send('emails.confirm_email', array('token' => $token, 'username' => $user_nego->name), function ($message) use($user_nego) {
+              $message->to($user_nego->email, $user_nego->name)->subject('Activación de la cuenta Plataforma Gastronómica Publicitaria');
+          });
+
+          // creamos un directorio para el negocio recien registrado
+          // lo comentamos por no ser portable aun
+          // File::makeDirectory('/var/www/app-isw/public/negocios/'.str_replace(' ', '',$nego->nombre_negocio), $mode = 0777, true, true);
+
           /*si todo queda bien redireccionamos a la misma pagina*/
-          //
-          return  redirect('/login')->with('mensaje','Su registro se ha completado le invitamos a iniciar sesión')->withInput();
+          // return  redirect('/login')->with('mensaje','Su registro se ha completado le invitamos a iniciar sesión')->withInput();
+
+          // redirigimos a home y avisamos que revise su correo
+          return redirect('/')->with('mensaje', '¡Registro exitoso!, revise su correo y siga las intrucciones para poder usar su cuenta');
+        }
+    }
+
+    // activamos al usuario
+    public function emailConfirm($token)
+    {
+        try {
+            $user = User::whereToken($token)->firstOrFail()->confirmEmail();
+            return redirect('/login')->with('mensaje', '¡Su cuenta de usuario se ha activado, ahora puede iniciar sesión en su cuenta!');
+        } catch (ModelNotFoundException $e) {
+            return redirect('/login')->with('mensaje', 'Ya se ha confirmado a este usuario, solo inicie sesión ¬¬');
         }
     }
 

@@ -47,4 +47,21 @@ class User extends Model implements AuthenticatableContract,
     {
       return $this->belongsTo('App\Rol');
     }
+
+    /**
+     * added function to activate user and remove the token.
+     * then we save the updated status of the user
+     * @return void
+     */
+    public function confirmEmail()
+    {
+        $this->estado = true;
+        $this->token = null;
+        $this->save();
+    }
+
+    public function isActivated()
+    {
+        return $this->estado;
+    }
 }
