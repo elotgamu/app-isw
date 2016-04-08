@@ -40,7 +40,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function negocio()
     {
-      return $this->belongsTo('App\Negocio');
+      return $this->belongsTo('App\Negocio', 'negocio', 'codigo_negocio');
     }
 
     public function rol()

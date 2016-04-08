@@ -73,7 +73,7 @@ class addnegocioController extends Controller
           return  Redirect('/registro')->withErrors($validator)->withInput();
         }
         else {
-          # code...
+
           /*guardamos los datos del negocio*/
           $nego = new app\Negocio;
           $nego->nombre_negocio= $entrada['nombre'];
@@ -106,15 +106,8 @@ class addnegocioController extends Controller
               $message->to($user_nego->email, $user_nego->name)->subject('Activación de la cuenta Plataforma Gastronómica Publicitaria');
           });
 
-          // creamos un directorio para el negocio recien registrado
-          // lo comentamos por no ser portable aun
-          // File::makeDirectory('/var/www/app-isw/public/negocios/'.str_replace(' ', '',$nego->nombre_negocio), $mode = 0777, true, true);
-
-          /*si todo queda bien redireccionamos a la misma pagina*/
-          // return  redirect('/login')->with('mensaje','Su registro se ha completado le invitamos a iniciar sesión')->withInput();
-
           // redirigimos a home y avisamos que revise su correo
-          return redirect('/')->with('mensaje', '¡Registro exitoso!, revise su correo y siga las intrucciones para poder usar su cuenta');
+          return redirect('/')->with('mensaje', '¡Registro exitoso!,revise su correo y siga las intrucciones para poder usar su cuenta');
         }
     }
 
@@ -122,8 +115,16 @@ class addnegocioController extends Controller
     public function emailConfirm($token)
     {
         try {
+            //primeros buscamos al negocio que tenga el usuario del token
+            //y asi le creamos la carpeta del negocio
+            $negocio = App\Negocio::with(['user' => function ($query) use($token) {
+                $query->where('token', 'like', $token);
+            }])->firstOrFail()->folderProfile();
+
+            //Ahora activamos al usuario
             $user = User::whereToken($token)->firstOrFail()->confirmEmail();
             return redirect('/login')->with('mensaje', '¡Su cuenta de usuario se ha activado, ahora puede iniciar sesión en su cuenta!');
+            
         } catch (ModelNotFoundException $e) {
             return redirect('/login')->with('mensaje', 'Ya se ha confirmado a este usuario, solo inicie sesión ¬¬');
         }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use File;
 use Illuminate\Database\Eloquent\Model;
 
 class Negocio extends Model
@@ -18,16 +19,24 @@ class Negocio extends Model
 
     public function user()
     {
-      return $this->hasMany('App\User');
+      return $this->hasMany('App\User', 'negocio', 'codigo_negocio');
     }
 
     public function mesa()
     {
-      return $ths->hasMany('App\Mesa');
+      return $this->hasMany('App\Mesa');
     }
 
     public function suscripcion()
     {
       return $this->belongsTo('App\Suscripcion');
+    }
+
+    public function folderProfile()
+    {
+        $name = str_replace(' ', '', $this->nombre_negocio);
+        $ruta_a_public = public_path().'/negocios/';
+        $ruta_a_public .= $name;
+        File::makeDirectory($ruta_a_public, $mode = 0777, true, true);
     }
 }
