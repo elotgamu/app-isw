@@ -9,6 +9,7 @@
     </div>
   <div class="panel-body">
   {!! Form::open(['url'=>'registro']) !!}
+    <!--  {!! csrf_field() !!} --> 
          <div class="login-form">
            <div class="form-group">
              {!! Form::label('negocio','Nombre:', array('class'=> 'label')) !!}

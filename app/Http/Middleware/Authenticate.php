@@ -38,10 +38,17 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('auth/login');
+                // modificado el path de login
+                return redirect()->guest('/login')->with('mensaje', 'Primero debe iniciar sesión');
+                //return redirect()->guest('auth/login');
             }
         }
 
-        return $next($request);
+        // verifico si ya el usuario esta activo(confirmado)
+        if ( ! $this->auth->user()->isActivated() ) {
+            return redirect()->guest('/login')->with('mensaje', 'Lo sentimos, su cuenta no ha sido activada aún');
+        } else {
+            return $next($request);
+        }
     }
 }

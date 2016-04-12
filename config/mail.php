@@ -28,7 +28,8 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    /* 'host' => env('MAIL_HOST', 'smtp.mailgun.org'),*/
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +55,8 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    /*'from' => ['address' => null, 'name' => null], */
+    'from' => ['address' => 'isw.plataforma.gastronomica@gmail.com', 'name' => 'NO responda'],
 
     /*
     |--------------------------------------------------------------------------

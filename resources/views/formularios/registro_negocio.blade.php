@@ -13,8 +13,14 @@
           </div>
         </div>-->
           <div class="col-md-4 center-block quitar espacio3 text-center margen">
+              <div class="contenedor_info_landing">
+                  @if(Session::has('mensaje'))
+                  <div class="alert alert-info alert-dismissable">
+                     <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ Session::get('mensaje') }}
+                    </div>
+                   @endif
               <div class="row">
-                   <div class="contenedor_info_landing">
                      <div class="login-form">
                       <div class="form-group">
                        <div class="btn-group">

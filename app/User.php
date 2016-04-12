@@ -40,11 +40,28 @@ class User extends Model implements AuthenticatableContract,
 
     public function negocio()
     {
-      return $this->belongsTo('App\Negocio');
+      return $this->belongsTo('App\Negocio', 'negocio', 'codigo_negocio');
     }
 
     public function rol()
     {
       return $this->belongsTo('App\Rol');
+    }
+
+    /**
+     * added function to activate user and remove the token.
+     * then we save the updated status of the user
+     * @return void
+     */
+    public function confirmEmail()
+    {
+        $this->estado = true;
+        $this->token = null;
+        $this->save();
+    }
+
+    public function isActivated()
+    {
+        return $this->estado;
     }
 }
