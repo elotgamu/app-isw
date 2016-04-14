@@ -37,6 +37,10 @@ class Negocio extends Model
         $name = str_replace(' ', '', $this->nombre_negocio);
         $ruta_a_public = public_path().'/negocios/';
         $ruta_a_public .= $name;
+        $imgs = $ruta_a_public . '/imgs';
+        $videos = $ruta_a_public . '/videos';
         File::makeDirectory($ruta_a_public, $mode = 0777, true, true);
+        File::makeDirectory($imgs, $mode = 0777, true, true);
+        File::makeDirectory($videos, $mode = 0777, true, true);
     }
 }
