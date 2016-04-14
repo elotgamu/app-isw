@@ -117,14 +117,14 @@ class addnegocioController extends Controller
         try {
             //primeros buscamos al negocio que tenga el usuario del token
             //y asi le creamos la carpeta del negocio
-            $negocio = App\Negocio::with(['user' => function ($query) use($token) {
-                $query->where('token', 'like', $token);
-            }])->firstOrFail()->folderProfile();
+            $negocio = App\Negocio::whereHas('user', function ($query) use($token) {
+                $query->where('token', $token);
+            })->firstOrFail()->folderProfile();
 
             //Ahora activamos al usuario
             $user = User::whereToken($token)->firstOrFail()->confirmEmail();
             return redirect('/login')->with('mensaje', '¡Su cuenta de usuario se ha activado, ahora puede iniciar sesión en su cuenta!');
-            
+
         } catch (ModelNotFoundException $e) {
             return redirect('/login')->with('mensaje', 'Ya se ha confirmado a este usuario, solo inicie sesión ¬¬');
         }
