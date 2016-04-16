@@ -30,7 +30,6 @@ class negociocontroller extends Controller
         //
        return View('formularios.registro_negocio');
     }
-
     /**
      * Store a newly created resource in storage.
      *

@@ -27,10 +27,14 @@ class listanegocioController extends Controller
     public function create()
     {
         //
-        $listanegocio = App\Negocio::paginate(10);
+        $listanegocio = App\Negocio::paginate(20);
         return View('formularios.catalogonegocio')->with('lista',$listanegocio);
     }
-
+    
+    public function vermenu($id)
+    {
+      return "Esto muestra un producto. Recibiendo $id";     
+    }
     /**
      * Store a newly created resource in storage.
      *

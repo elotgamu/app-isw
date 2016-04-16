@@ -19,12 +19,18 @@ Route::get('/login', 'loginController@create');
 Route::post('/login', 'loginController@store');
 Route::get('/catalogo_negocios', 'listanegocioController@create');
 Route::post('/catalogo_negocios','listanegocioController@store');
+Route::get('/catalogo_negocios/{id}','listanegocioController@vermenu');
 //Route::post('/catalogo_negocios', array('uses' => 'listanegocioController@prueba'));
 
 // copiado de Robert
 Route::get('/cpanel', 'cpanelController@create');
 Route::get('/mi_contenido','contenidosController@create');
-Route::post('/mi_contenido','contenidosController@store');
+Route::post('/mi_contenido/categoria/agregar','contenidosController@addcate');
+Route::post('/mi_contenido/producto/agregar','contenidosController@addproducto');
+Route::get('/mi_contenido/listar','contenidosController@listar');
+Route::get('/mi_contenido/categoria/{id_categoria}/producto/listar','contenidosController@listar_producto');
+Route::get('/mi_contenido/Categorias/{id}/modificar','contenidosController@edit');
+Route::put('/mi_contenido/Categorias/{id}','contenidosController@update');
 //para la desc
 //Route::get('/catalogo_negocios/{Lista}', 'listanegocioController@mostrar_detalles');
 //Route::post('/catalogo_negocios', 'listanegocioController@prueba');

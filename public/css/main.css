@@ -1,15 +1,17 @@
 body{
 	font-family: 'Lato' , sans-serif;
+  /*background-color: #385B35;*/
 }
 
 .banner-container{
-	  background: url('../images//Tipicos.jpg') top center no-repeat;
-		background-attachment:scroll;background-position:center center;
+	  background: url('../images//imgback.svg');
+		background-attachment:scroll;background-position:center;
 		-webkit-background-size:cover;-moz-background-size:cover;
-		background-size:cover;-o-background-size:cover;text-align:center;color:#fff
+		background-size:cover;-o-background-size:cover;text-align:center;color:#fff;
 		background-size: cover;
     height: 750px;
     text-align: center;
+    background-repeat: no-repeat; background-attachment: fixed; background-color: ce3a00;
 }
 
 .col-centered{
@@ -53,15 +55,16 @@ body{
 	width: auto;
 	height: auto;
 }
+
 .contenedor_registro
 {
     position: relative;
     border-radius: 8px;
-    /*left: 50%;*/
+    left: 50%;
     margin: 0 auto;
 		padding: 10px;
     background-color: #9A3E0C;
-    /*top: 30%;*/
+    top: 30%;
     width: auto;
     height: auto;
     border: 2px solid #87ACD0;
@@ -228,7 +231,7 @@ button{
   z-index: 100;
 }
 
-.menu {
+/*.menu {
   position: fixed;
   top: 30px;
   left: 0;
@@ -243,9 +246,9 @@ button{
   -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
   padding: 10px;
-}
+}*/
 
-.menu-btn {
+/*.menu-btn {
   margin-top: -69px;
   z-index: 11222;
   background-color: transparent;
@@ -264,7 +267,7 @@ button{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
+}*/
 
 .content {
   margin-top: 60px;
@@ -290,128 +293,64 @@ button{
   left: -3px;
 }
 
-/*!
- * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
-/* Toggle Styles */
-
-#wrapper {
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+.s-scroll
+{
+    max-height:500px;
+    overflow-y:auto;
 }
 
-#wrapper.toggled {
-    padding-left:0px;
+.li-custom li a {
+    background-color:#E4E2E0;
+    color:#FFFDFB;
 }
 
-#sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    left: 150px;
-    width: 0;
-    height: 100%;
-    margin-left: -150px;
-    overflow-y: auto;
-    background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+.li-custom li a:hover {
+    background-color:#612B02;
+    color:#FFFDFB;
 }
 
-#wrapper.toggled #sidebar-wrapper {
-    width: 150px;
+.index
+{
+  background-color:#D5700A;
 }
 
-#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    /*padding: 15px;*/
+.thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 2px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  -webkit-transition: border .2s ease-in-out;
+  -o-transition: border .2s ease-in-out;
+  transition: border .2s ease-in-out;
 }
 
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -150px;
+.thumbnail:hover
+{
+	  background-color: #131B44;
+		color: #FAFBFC;
 }
 
-/* Sidebar Styles */
-
-.sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 150px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.thumbnail .caption:hover
+{
+	color: #FAFBFC;
 }
 
-.sidebar-nav li {
-    text-indent: 20px;
-    line-height: 40px;
+.thumbnail > img,
+.thumbnail a > img {
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: #999999;
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  border-color: #337ab7;
 }
 
-.sidebar-nav li a:hover {
-    text-decoration: none;
-    color: #fff;
-    background: rgba(255,255,255,0.2);
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-    text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 18px;
-    line-height: 60px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: #999999;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
-    background: none;
-}
-
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 0px;
-    }
-
-    #wrapper.toggled {
-        padding-left: 0;
-    }
-
-    #sidebar-wrapper {
-        width: 0;
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        width: 150px;
-    }
-
-    #page-content-wrapper {
-        padding: 20px;
-        position: relative;
-    }
-
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
+.thumbnail .caption {
+  padding: 9px;
+  color: #333;
 }

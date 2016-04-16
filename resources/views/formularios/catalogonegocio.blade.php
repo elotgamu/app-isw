@@ -24,36 +24,36 @@
     </span>
   </div>
   </div>
-  <br>
 </div>
 <div class="row">
-<div class="container">
-<div class="panel panel-primary">
-  <div class="panel-heading">
-  <h3 class="panel-title">Negocios registrados</h3>
-  </div>
-  <div class="panel-body">
+       <div class="col-lg-12 text-center">
+           <h2>Negocios Registrados</h2>
+           <hr class="star-primary">
+       </div>
+ </div>
+<div class="row">
 <div class="list-group">
   @if(count($lista)>0)
   @foreach ($lista as $Lista)
-                <div href="#" class="list-group-item list-group-item-success">
+                <div href="#" class="list-group-item">
                   <div class="container">
                   <div class="col-md-7">
                     <h2 class="list-group-item-heading">{{ $Lista->nombre_negocio }}</h2>
-                    <p class="list-group-item-text">Telefono No: {{ $Lista->telefono_negocio }}</p>
+                    <p class="list-group-item-text">Número telefonico: {{ $Lista->telefono_negocio }}</p>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                    <div class="row">
                    <br>
                    </div>
                    <div class="row">
-                          <!--<input type="submit" name="menu" class="btn btn-default btn-group-xs boton">Ver menú</input> -->
-                          {!! Form::submit('Ver menú', array('name' =>'menu', 'class'=>'btn btn-default btn-group-xs boton')) !!}
-                          <!--<button type="button" class="btn btn-default btn-group-xs boton">ver información del negocio</button> -->
-                          <!--{!! Form::submit('Ver información del negocio', array('class'=>'btn btn-default btn-group-xs boton'))!!} -->
-                          {!! Form::submit('Ver información', array('name' =>'detalles', 'class'=>'btn btn-default btn-group-xs boton')) !!}
-                          {!! Form::hidden('id_negocio', $Lista->codigo_negocio ) !!}
-                          <!-- <input type="submit" name="detalles" class="btn btn-default btn-group-xs boton" value="Información"> -->
+                        <div class="btn-group">
+                         <p>
+                            <a href="{{ action("listanegocioController@vermenu",[$Lista->codigo_negocio]) }}" class="btn btn-primary">Ver menu gastronomico</a>
+                          </p>
+                          <p>
+                             <a href="{{ action("loginController@create") }}" class="btn btn-primary">Ver Informacion adicional</a>
+                           </p>
+                       </div>   
                    </div>
                   </div>
                 </div>
@@ -64,9 +64,6 @@
       <p class="list-group-item-text">No se ha encontrado ningun Negocio</p>
   </div>
   @endif
-</div>
-</div>
-</div>
 </div>
 </div>
 {!! Form::close() !!}
