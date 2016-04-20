@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use \Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
 class VerifyCsrfToken extends BaseVerifier
@@ -11,7 +12,23 @@ class VerifyCsrfToken extends BaseVerifier
      *
      * @var array
      */
-    protected $except = [
+    protected $except_urls = [
         //
+       '/mi_contenido/categoria/agregar',
+       '/mi_contenido/listar',
+       '/mi_contenido/producto/agregar'
     ];
+
+
+    /*esta funcion maneja la execpciones de $exept_urls*/
+   public function handle($request, Closure $next)
+   {
+       $regex = '#' . implode('|', $this->except_urls) . '#';
+      if ($this->isReading($request) || $this->tokensMatch($request) || preg_match($regex, $request->path()))
+       {
+         return $this->addCookieToResponse($request, $next($request));
+      }
+             throw new TokenMismatchException;
+}
+
 }

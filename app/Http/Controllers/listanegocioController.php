@@ -31,6 +31,13 @@ class listanegocioController extends Controller
         return View('formularios.catalogonegocio')->with('lista',$listanegocio);
     }
 
+
+
+    public function vermenu($id)
+ {
+    return "Esto muestra un producto. Recibiendo $id";
+  }
+
     /**
      * Store a newly created resource in storage.
      *
