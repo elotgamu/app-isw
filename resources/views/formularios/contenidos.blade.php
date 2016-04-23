@@ -36,6 +36,25 @@
            </div>
         </div>
 
+        <div id="lsprodcat" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        X
+                        </button>
+                        <h3>Productos de la categoría</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                               <div id="lista_producto" class="row list-group s-scroll">
+                               </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="addcategoria" class="modal fade">
               <div class="modal-dialog">
                  <div class="modal-content">
@@ -114,8 +133,9 @@
           </div>
           <div class="row">
             <div class="col-lg-12 text-left">
-                   <h3>Categorias</h3>
-                   <a data-toggle="modal" href="#addcategoria" class="btn btn-success">Agregar</a>
+                   <a data-toggle="modal" href="#addcategoria" class="btn btn-success">Agregar categoría nueva</a>
+                   &nbsp
+                   <a data-toggle="modal" href="#addproducto" class="btn btn-success">Agregar nuevo producto</a>
                   <hr class="star-primary">
              </div>
          </div>
@@ -127,8 +147,7 @@
 
           <div class="row">
               <div class="col-lg-12 text-left">
-                    <h3>Productos</h3>
-                    <a data-toggle="modal" href="#addproducto" class="btn btn-success">Agregar</a>
+                    <h3>Multimedia</h3>
                     <hr class="star-primary">
               </div>
           </div>

@@ -46,7 +46,10 @@ class contenidosController extends Controller
 
    public function listar_producto($id)
     {
-       $productos= app\Producto::where('categoria',$id)->get();
+       //$productos= app\Producto::where('categoria',$id)->get();
+       $productos = App\Producto::join('categoria', 'producto.categoria', '=', 'categoria.codigo_categoria')
+            ->where('categoria', $id)->
+            get(array('nombre_producto', 'precio_producto', 'nombre_categoria'));
            return response()->json(
               $productos->toArray()
            );
@@ -59,6 +62,7 @@ class contenidosController extends Controller
       $categorias= new app\Categoria();
       $categorias->nombre_categoria=$data['name'];
       $categorias->descripcion_categoria=$data['descrip'];
+      $categorias->negocio=$data['nego'];
       $categorias->save();
       return  response()->json([
         "mensaje"=>"Categoria agregada"
