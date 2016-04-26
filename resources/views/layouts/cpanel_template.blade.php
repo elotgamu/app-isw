@@ -16,7 +16,7 @@
   <body>
         <!--header del sitio-->
         @include('includes.header2')
-        <div class="col-sm-3 col-md-2">
+        <div class="col-md-2 col-xs-2">
   <div id="wrapper">
           <!-- Sidebar -->
      <div id="sidebar-wrapper">
@@ -38,7 +38,7 @@
      </div>
    </div>
   </div>
-        <div class="col-md-8 col-xs-8">
+        <div class="col-md-8 col-xs-10">
             @yield('worksheets')
         </div>
        <div class="col-md-2 col-xs-2">
@@ -68,7 +68,7 @@
 
 $(function(){
     $('#lista_producto').slimScroll({
-        height: '400px'
+        height: '500px'
     });
 });
     </script>

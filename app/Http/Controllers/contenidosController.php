@@ -35,23 +35,34 @@ class contenidosController extends Controller
           return view('formularios.contenidos');
     }
 
-
+    /* listamos las categorias
+    * filtrando las que pertenecen
+    * al negocio haciendo uso de la
+    * sesion de usuario
+    */
     public function listar()
     {
-       $categoria= app\Categoria::all();
-           return response()->json(
-              $categoria->toArray()
-           );
+        $categoria = app\Categoria::where('negocio', Auth::user()->negocio)->get();
+        return response()->json($categoria->toArray());
    }
 
+   /* listamos los productos
+   * filtrados por el id de la categoria
+   */
    public function listar_producto($id)
     {
-       $productos= app\Producto::where('categoria',$id)->get();
+       $productos = App\Producto::join('categoria', 'producto.categoria', '=', 'categoria.codigo_categoria')
+            ->where('categoria', $id)->
+            get(array('nombre_producto', 'precio_producto', 'nombre_categoria'));
            return response()->json(
               $productos->toArray()
            );
     }
 
+    /* Agregamos una categoria nueva
+    * estos datos provienen de Ajax
+    * #btnadd
+    */
     public function addcate(Request $request)
     {
       //
@@ -59,12 +70,17 @@ class contenidosController extends Controller
       $categorias= new app\Categoria();
       $categorias->nombre_categoria=$data['name'];
       $categorias->descripcion_categoria=$data['descrip'];
+      $categorias->negocio=$data['nego'];
       $categorias->save();
       return  response()->json([
         "mensaje"=>"Categoria agregada"
       ]);
     }
 
+    /* Agregamos nuevo productos
+    *  los datos provienen de Ajax
+    * #btnproducto
+    */
     public function addproducto(Request $request)
     {
       //
@@ -114,8 +130,9 @@ class contenidosController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
+     * obtenemos el id de la categoria  a editar
+     * y la categoria a editar
+     * la enviamos a un Ajax
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -129,7 +146,8 @@ class contenidosController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizamos la categoria
+     * los datos actualizados se obtienen via Ajax
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

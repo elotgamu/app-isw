@@ -32,6 +32,11 @@ class Negocio extends Model
       return $this->belongsTo('App\Suscripcion');
     }
 
+    public function categoria()
+    {
+        return $this->hasMany('App\Categoria', 'negocio', 'codigo_negocio');
+    }
+
     public function folderProfile()
     {
         $name = str_replace(' ', '', $this->nombre_negocio);

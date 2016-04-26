@@ -8,8 +8,9 @@ $.ajaxSetup({
 $("#btnadd").click(function(){
   var nombre= $("#txtcategoria").val();
   var descripcion= $("#txtdescripcion").val();
+  var negocio= $("#negocio").val();
   var ruta="/mi_contenido/categoria/agregar";
-  var datos={name: nombre, descrip: descripcion};
+  var datos={name: nombre, descrip: descripcion, nego: negocio};
   $.ajax({
     url:ruta,
     type:'POST',
@@ -99,6 +100,7 @@ function cargar_categorias(){
             "<option value=''>Seleccione una categoria</option>"
     );
     $("#lista_categorias").empty();
+    ls_producto.empty();
     var ruta="mi_contenido/listar";
 
       $.get(ruta,function(res){
@@ -117,6 +119,8 @@ function cargar_categorias(){
                   "</div>"+
                   "<div class='col-lg-4'>"+
                     "<button class='btn btn-info btn-sm' href='#updatecategoria' data-toggle='modal' value="+value.codigo_categoria+" OnClick='info_categoria(this)'>Editar</button>"+
+                    "&nbsp"+"&nbsp"+
+                    "<button class='btn btn-info btn-sm' href='#lsprodcat' data-toggle='modal' ' value="+value.codigo_categoria+" OnClick='ls_prods(this)'>Ver Productos</button>"+
                   "</div>"+
               "</div>"+
               "</div>"+
@@ -128,7 +132,7 @@ function cargar_categorias(){
                 "<option value=" + value.codigo_categoria + ">" + value.nombre_categoria + "</option>"
               );
 
-                  var ruta2="/mi_contenido/categoria/"+value.codigo_categoria+"/producto/listar";
+                  /*var ruta2="/mi_contenido/categoria/"+value.codigo_categoria+"/producto/listar";
                   $.get(ruta2,function(res1){
                           $(res1).each(function(key1,value1){
                               ls_producto.append(
@@ -138,7 +142,8 @@ function cargar_categorias(){
                                   "<div class='row'>"+
                                       "<div class='col-lg-8'>"+
                                           "<h4 class='group inner list-group-item-text'> Nombre: "+value1.nombre_producto+"</h4>"+
-                                          "<p class='lead'> Precio "+value1.precio_producto+"</p>"+
+                                          "<p class='lead'> Precio: "+value1.precio_producto+"</p>"+
+                                          "<p class='lead'>Categoria: "+value1.nombre_categoria+"</p>"+
                                       "</div>"+
                                       "<div class='col-lg-3'>"+
                                             "<br/>"+
@@ -152,7 +157,7 @@ function cargar_categorias(){
                               );
                         });
 
-                });
+                });*/
             });
         }
         else {
@@ -160,6 +165,34 @@ function cargar_categorias(){
         }
 
       });
+}
+
+function ls_prods(btn){
+    var ls_producto=$('#lista_producto');
+    ls_producto.empty();
+    var ruta2="/mi_contenido/categoria/"+btn.value+"/producto/listar";
+    $.get(ruta2,function(res1){
+            $(res1).each(function(key1,value1){
+                ls_producto.append(
+                "<div class='item col-lg-12'>"+
+                "<div class='thumbnail'>"+
+                    "<div class='caption navbar-custom'>"+
+                    "<div class='row'>"+
+                        "<div class='col-lg-8'>"+
+                            "<h4 class='group inner list-group-item-text'> Nombre: "+value1.nombre_producto+"</h4>"+
+                            "<p class='lead'> Precio: "+value1.precio_producto+"</p>"+
+                        "</div>"+
+                        "<div class='col-lg-3'>"+
+                              "<br/>"+
+                              "<button class='btn btn-info btn-sm'  value="+value1.codigo_producto+">Editar</button>"+
+                        "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"
+                );
+          });
+  });
 }
 
 $(document).ready(function(){
