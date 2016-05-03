@@ -24,5 +24,7 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <!-- desactivo el envio real de mensaje, los mando al log -->
+        <env name="MAIL_PRETEND" value="true"/>
     </php>
 </phpunit>

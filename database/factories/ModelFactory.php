@@ -1,5 +1,7 @@
 <?php
 
+use Faker\Generator;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -17,5 +19,18 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+    ];
+});
+
+$nego = public_path() . '/negocios/';
+
+$factory->define(App\Negocio::class, function (Faker\Generator $faker) use ($nego){
+    return [
+        'nombre_negocio' => $faker->company,
+        'descipcion_negocio' => $faker->text,
+        'ubicacion_negocio' => $faker->address,
+        'propietario_negocio' => $faker->name,
+        'telefono_negocio' => $faker->phoneNumber,
+        'menu_negocio' => $faker->file('/home/elotgamu/Imágenes/', $nego),
     ];
 });

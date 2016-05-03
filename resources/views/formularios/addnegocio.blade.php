@@ -3,13 +3,13 @@
 
 @section ('content')
 <div class="col-md-4 center-block quitar espacio3 text-center margen">
-  <div  class="panel panel-primary" >
+    {!! Form::open(['url'=>'registro']) !!}
+    <div  class="panel panel-primary" >
     <div class="panel-heading">
-    <h3 class="panel-title">Informacion del negocio</h3>
+        <h3 class="panel-title">Informacion del negocio</h3>
     </div>
   <div class="panel-body">
-  {!! Form::open(['url'=>'registro']) !!}
-    <!--  {!! csrf_field() !!} --> 
+  <!  Aqui estaba el form open blade  -->
          <div class="login-form">
            <div class="form-group">
              {!! Form::label('negocio','Nombre:', array('class'=> 'label')) !!}
@@ -39,17 +39,17 @@
               @endforeach
               @endif
             </div>
-              <div class="form-group">
+            <div class="form-group">
               {!! Form::label('Telefono','Telefono',array('class'=> 'label')) !!}
               {!! Form::text('telefono',null,array('pattern'=>'[0-9]{8}','id'=>'txttelefono','class' => 'form-control')) !!}
               <!--@if( $errors->has('telefono'))
-              @foreach($errors->get('telefono') as $error )
-              <div class="alert alert-warning alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  {{$error}}
-                </div>
-              @endforeach
-              @endif-->
+                    @foreach($errors->get('telefono') as $error )
+                        <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{$error}}
+                        </div>
+                    @endforeach
+                   @endif-->
             </div>
           </div>
         </div>
@@ -116,8 +116,9 @@
               </div>
             </div>
         </div>
-  {!! Form::close() !!}
+  <! aqui estaba el form close blade -->
   </div>
 </div>
+    {!! Form::close() !!}
 </div>
 @stop
