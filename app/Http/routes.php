@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/mi_contenido/categoria/{id_categoria}/producto/listar','contenidosController@listar_producto');
     Route::get('/mi_contenido/Categorias/{id}/modificar','contenidosController@edit');
     Route::put('/mi_contenido/Categorias/{id}','contenidosController@update');
+    Route::post('/mi_contenido/promocion/agregar','contenidosController@addpromocion');
+    Route::get('/mi_contenido/promocion/listar','contenidosController@listar_promo');
 });
 
 // esta es una ruta de prueba

@@ -12,6 +12,8 @@ use Illuminate\Http\Response;
 use Auth;
 use App;
 
+use App\Promocion;
+
 class contenidosController extends Controller
 {
     /**
@@ -46,6 +48,14 @@ class contenidosController extends Controller
         return response()->json($categoria->toArray());
    }
 
+
+public function listar_promo()
+{
+    $promocion = app\Promocion::where('negocio_id', Auth::user()->negocio)->get();
+        return response()->json(
+           $promocion->toArray()
+        );
+}
    /* listamos los productos
    * filtrados por el id de la categoria
    */
@@ -75,6 +85,38 @@ class contenidosController extends Controller
       return  response()->json([
         "mensaje"=>"Categoria agregada"
       ]);
+    }
+
+    public function addpromocion(Request $request)
+    {
+        $datos= Request::all();
+        $entrada= $datos['archivo'];
+        //subimos el archivo
+        $negocio = App\Negocio::find(Auth::user()->negocio);
+        //subimos el archivo al servidor
+        try {
+            $extension = $entrada->getClientOriginalExtension();
+            $entrada->move(base_path() .'/public/negocios/'.str_replace(' ', '',$negocio['nombre_negocio']).'/imgs'.'/',$datos['ruta_archivo']);
+            $promocion= new app\Promocion();
+            $promocion->activa=1;
+            $promocion->nombre_promo=$datos['name'];
+            $promocion->descripcion_promo=$datos['descrip'];
+            $promocion->img_promo="../negocios/".str_replace(' ', '',$negocio['nombre_negocio'])."/imgs"."//".$datos['ruta_archivo'];
+            $promocion->valido_desde=$datos['fecha_ini'];
+            $promocion->valido_hasta=$datos['fecha_fin'];
+            $promocion->negocio_id=$negocio['codigo_negocio'];
+            $promocion->save();
+            return  response()->json([
+              "mensaje"=>"promocion agregada"
+            ]);
+        }
+        catch (Exception $e) {
+            return  response()->json([
+              "mensaje"=>"No se pudo agregar la promocion intente de nuevo"
+            ]);
+        }
+
+
     }
 
     /* Agregamos nuevo productos

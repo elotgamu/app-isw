@@ -16,7 +16,8 @@ class VerifyCsrfToken extends BaseVerifier
         //
        '/mi_contenido/categoria/agregar',
        '/mi_contenido/listar',
-       '/mi_contenido/producto/agregar'
+       '/mi_contenido/producto/agregar',
+       '/mi_contenido/promocion/agregar'
     ];
 
 
