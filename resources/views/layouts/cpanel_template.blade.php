@@ -9,6 +9,8 @@
     {!! Html::style('css/bootstrap.css') !!}
     {!! Html::style('css/sidebar.css') !!}
     {!! Html::style('css/main.css') !!}
+    {!! Html::style('css/datepicker.css') !!}
+    {!! Html::style('css/smoke.css') !!}
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
   </head>
@@ -51,6 +53,9 @@
         {!! Html::script('js/bootstrap-filestyle.js') !!}
         {!! Html::script('js/CRUD.js') !!}
         {!! Html::script('js/jquery.slimscroll.min.js') !!}
+        {!! Html::script('js/bootstrap-datepicker.js') !!}
+        {!! Html::script('js/smoke.js') !!}
+        {!! Html::script('js/smoke.min.js') !!}
 
         <!-- Menu Toggle Script -->
    <script>
@@ -66,11 +71,22 @@
         });
 });
 
+$(function() {
+  $('#dptfechahasta').datepicker({
+    format: "yyyy-mm-dd"
+  });
+});
+
 $(function(){
     $('#lista_producto').slimScroll({
         height: '500px'
     });
 });
     </script>
+
+    <style>
+  .datepicker{z-index:1151 !important;}
+</style>
+
   </body>
 </html>

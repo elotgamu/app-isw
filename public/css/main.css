@@ -334,6 +334,11 @@ button{
 		color: #FAFBFC;
 }
 
+img {
+	max-width: 100%;
+	height: 300px;
+}
+
 .thumbnail .caption:hover
 {
 	color: #FAFBFC;
