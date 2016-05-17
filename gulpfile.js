@@ -11,6 +11,8 @@ var elixir = require('laravel-elixir');
  |
  */
 
+//comentamos la compilacion de archivos Sass ya que solo necesitamos phpUnit
 elixir(function(mix) {
-    mix.sass('app.scss');
+    //mix.sass('app.scss');
+    mix.phpUnit();
 });
