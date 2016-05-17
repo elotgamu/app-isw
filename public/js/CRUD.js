@@ -53,9 +53,12 @@ $("#btnproducto").click(function(){
     return;
   }
 
+  /*
+  * Aqui me falta validar la insercion de valores numericos
+  */
   if (precio=='')
   {
-    smoke.alert('A no ser que este producto sea una cortesía, indíque su precio');
+    smoke.alert('A no ser que este producto sea una cortesía, indique su precio');
     return;
   }
   var ruta="/mi_contenido/producto/agregar";
@@ -202,7 +205,7 @@ function cargar_promociones()
             });
         }
         else {
-                dt_promocion.append("no se encontro ninguna promocion");
+                dt_promocion.append("¡Aún no ha agregado ninguna promoción!");
         }
     });
 
