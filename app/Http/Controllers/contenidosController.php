@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Response;
 use Auth;
 use App;
-
+//use \Validator;
 use App\Promocion;
 
 class contenidosController extends Controller
@@ -107,12 +107,12 @@ public function listar_promo()
             $promocion->negocio_id=$negocio['codigo_negocio'];
             $promocion->save();
             return  response()->json([
-              "mensaje"=>"promocion agregada"
+              "mensaje"=>"La nueva promoción ha agregada y se encuentra activa"
             ]);
         }
         catch (Exception $e) {
             return  response()->json([
-              "mensaje"=>"No se pudo agregar la promocion intente de nuevo"
+              "mensaje"=>"No se pudo agregar la promoción intente de nuevo"
             ]);
         }
 
@@ -204,7 +204,7 @@ public function listar_promo()
         $categoria->descripcion_categoria=$data['descrip'];
         $categoria->save();
         return  response()->json([
-        "mensaje"=>"Categoria Actualizada"
+        "mensaje"=>"Categoria actualizada"
         ]);
     }
 

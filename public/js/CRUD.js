@@ -10,6 +10,17 @@ $("#btnadd").click(function(){
   var descripcion= $("#txtdescripcion").val();
   var negocio= $("#negocio").val();
   var ruta="/mi_contenido/categoria/agregar";
+  if (nombre=='')
+  {
+      smoke.alert('No ha ingresado el nombre de la nueva promoción ¬¬');
+      return;
+  }
+
+  if (descripcion=='')
+  {
+      smoke.alert('Ingrese una descripción de la categoría ¬¬');
+      return;
+  }
   var datos={name: nombre, descrip: descripcion, nego: negocio};
   $.ajax({
     url:ruta,
@@ -31,6 +42,25 @@ $("#btnproducto").click(function(){
   var nombre= $("#txtproducto").val();
   var precio= $("#txtprecio").val();
   var id_categoria=$("#cbcategorias").val();
+  if (id_categoria=='')
+  {
+    smoke.alert('Especifique la categoría a la que pertenece este producto');
+    return;
+  }
+  if (nombre=='')
+  {
+    smoke.alert('¿Producto sin nombre?... Lo ha olvidado verdad ¬¬');
+    return;
+  }
+
+  /*
+  * Aqui me falta validar la insercion de valores numericos
+  */
+  if (precio=='')
+  {
+    smoke.alert('A no ser que este producto sea una cortesía, indique su precio');
+    return;
+  }
   var ruta="/mi_contenido/producto/agregar";
   var datos={name: nombre, precio: precio, id_catego:id_categoria};
 
@@ -92,7 +122,7 @@ $("#btnsavepromocion").click(function(){
     {
         smoke.alert('Ingrese el nombre de la promoción');
         //alert("I am an alert box!");
-        return false;
+        return;
     }
     if(descrip_promo=="")
     {
@@ -175,7 +205,7 @@ function cargar_promociones()
             });
         }
         else {
-                dt_promocion.append("no se encontro ninguna promocion");
+                dt_promocion.append("¡Aún no ha agregado ninguna promoción!");
         }
     });
 

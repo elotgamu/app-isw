@@ -102,7 +102,7 @@
                         </div>
                         <div class="form-group">
                          {!! Form::label('precio','Precio', array('class'=> 'label')) !!}
-                         {!! Form::text('txtprecio', null,array('placeholder' => '', 'class' => 'form-control','id'=>'txtprecio')) !!}
+                         {!! Form::input('number', 'txtprecio', null,array('placeholder' => '200.00', 'class' => 'form-control','id'=>'txtprecio')) !!}
                         </div>
                         <div class="form-group">
                          {!! Form::label('cbcategoria','Categoria', array('class'=> 'label')) !!}
@@ -147,7 +147,6 @@
                                             </span>
                                         </div>
                                     </div>
-
                                     <!--<div class="form-group">
                                         <input  type="text" class="date-picker form-control"  id="dptfechahasta" />
                                     </div>-->
