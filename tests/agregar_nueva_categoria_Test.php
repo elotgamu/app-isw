@@ -8,16 +8,6 @@ use Illuminate\Database\Seeder;
 
 class agregar_nueva_categoria_Test extends TestCase
 {
-    /*public function setUp()
-    {
-        parent::setUp();
-    }
-
-    public function tearDown()
-    {
-        Mockery::close();
-    }*/
-
     /**
      * A basic test example.
      *
