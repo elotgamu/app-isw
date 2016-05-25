@@ -38,14 +38,19 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public function negocio()
+    /*public function negocio()
     {
       return $this->belongsTo('App\Negocio', 'negocio', 'codigo_negocio');
-    }
-
+  }
+    /*
     public function rol()
     {
       return $this->belongsTo('App\Rol');
+  }*/
+
+    public function user()
+    {
+        return $this->morphTo();
     }
 
     /**

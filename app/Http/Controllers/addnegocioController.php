@@ -91,14 +91,41 @@ class addnegocioController extends Controller
           $token = str_random(60);
 
           /*Guardamos los datos del usuario*/
-          $user_nego = new App\User;
+          // comentados por el momento, prueba polymorphic
+          /* $user_nego = new App\User;
           $user_nego->name= $entrada['usuario'];
           $user_nego->email= $entrada['correo'];
           $user_nego->password = Hash::make($entrada['contraseña']);
-          $user_nego->estado= false;
-          $user_nego->negocio= $last_nego;
-          $user_nego->rol= 1;
+          $user_nego->estado= false;*/
+
+          //comentamos la fk a negocio, ya no pertenece aca
+          //$user_nego->negocio= $last_nego;
+
+          // comentamos el rol
+          //$user_nego->rol= 1;
+
+          //$user_nego->token= $token;
+          //$user_nego->save();
+
+          //creo las nuevas referencias a  admins
+          $admin_nego = new App\Admin;
+          $admin_nego->nombre = $entrada['propietario'];
+          $admin_nego->telefono = '';
+          $admin_nego->negocio = $last_nego;
+          $admin_nego->save();
+
+          //obtengo la pk del admin para users
+          $admin_pk = $admin_nego->id;
+
+          //ahora creamos el users relacionado al admin
+          $user_nego = new App\User;
+          $user_nego->name = $entrada['usuario'];
+          $user_nego->email = $entrada['correo'];
+          $user_nego->password = Hash::make($entrada['contraseña']);
+          $user_nego->estado = false;
           $user_nego->token= $token;
+          $user_nego->user_id = $admin_pk;
+          $user_nego->user_type = 'Admin';
           $user_nego->save();
 
           // enviamos el email de confimacion basados en un vista
@@ -117,8 +144,14 @@ class addnegocioController extends Controller
         try {
             //primeros buscamos al negocio que tenga el usuario del token
             //y asi le creamos la carpeta del negocio
-            $negocio = App\Negocio::whereHas('user', function ($query) use($token) {
+
+            //comentamos por el polymorphic
+            /*negocio = App\Negocio::whereHas('user', function ($query) use($token) {
                 $query->where('token', $token);
+            })->firstOrFail()->folderProfile();*/
+            
+            $negocio = App\Negocio::whereHas('admin', function ($query) use($token) {
+                $query->join('users', 'admins.id', '=', 'users.user_id')->where('token', $token);
             })->firstOrFail()->folderProfile();
 
             //Ahora activamos al usuario
