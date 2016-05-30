@@ -8,7 +8,9 @@ $.ajaxSetup({
 $("#btnadd").click(function(){
   var nombre= $("#txtcategoria").val();
   var descripcion= $("#txtdescripcion").val();
-  var negocio= $("#negocio").val();
+
+  // comento ya que ya no obtengo el negocio
+  //var negocio= $("#negocio").val();
   var ruta="/mi_contenido/categoria/agregar";
   if (nombre=='')
   {
@@ -21,7 +23,10 @@ $("#btnadd").click(function(){
       smoke.alert('Ingrese una descripción de la categoría ¬¬');
       return;
   }
-  var datos={name: nombre, descrip: descripcion, nego: negocio};
+  //comento
+  //var datos={name: nombre, descrip: descripcion, nego: negocio};
+
+  var datos={name: nombre, descrip: descripcion};
   $.ajax({
     url:ruta,
     type:'POST',

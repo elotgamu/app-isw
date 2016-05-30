@@ -44,14 +44,15 @@ class contenidosController extends Controller
     */
     public function listar()
     {
-        $categoria = app\Categoria::where('negocio', Auth::user()->negocio)->get();
+        //$categoria = app\Categoria::where('negocio', Auth::user()->negocio)->get();
+        $categoria = app\Categoria::where('negocio', Auth::user()->user->negocio)->get();
         return response()->json($categoria->toArray());
    }
 
 
 public function listar_promo()
 {
-    $promocion = app\Promocion::where('negocio_id', Auth::user()->negocio)->get();
+    $promocion = app\Promocion::where('negocio_id', Auth::user()->user->negocio)->get();
         return response()->json(
            $promocion->toArray()
         );
@@ -77,10 +78,12 @@ public function listar_promo()
     {
       //
       $data = Request::all();
+      $negocio = Auth::user()->user->negocio;
       $categorias= new app\Categoria();
       $categorias->nombre_categoria=$data['name'];
       $categorias->descripcion_categoria=$data['descrip'];
-      $categorias->negocio=$data['nego'];
+      $categorias->negocio = $negocio;
+      //$categorias->negocio=$data['nego'];
       $categorias->save();
       return  response()->json([
         "mensaje"=>"Categoria agregada"
@@ -92,7 +95,7 @@ public function listar_promo()
         $datos= Request::all();
         $entrada= $datos['archivo'];
         //subimos el archivo
-        $negocio = App\Negocio::find(Auth::user()->negocio);
+        $negocio = App\Negocio::find(Auth::user()->user->negocio);
         //subimos el archivo al servidor
         try {
             $extension = $entrada->getClientOriginalExtension();

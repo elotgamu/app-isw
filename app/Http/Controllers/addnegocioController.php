@@ -125,7 +125,7 @@ class addnegocioController extends Controller
           $user_nego->estado = false;
           $user_nego->token= $token;
           $user_nego->user_id = $admin_pk;
-          $user_nego->user_type = 'Admin';
+          $user_nego->user_type = 'App\Admin';
           $user_nego->save();
 
           // enviamos el email de confimacion basados en un vista
@@ -149,7 +149,7 @@ class addnegocioController extends Controller
             /*negocio = App\Negocio::whereHas('user', function ($query) use($token) {
                 $query->where('token', $token);
             })->firstOrFail()->folderProfile();*/
-            
+
             $negocio = App\Negocio::whereHas('admin', function ($query) use($token) {
                 $query->join('users', 'admins.id', '=', 'users.user_id')->where('token', $token);
             })->firstOrFail()->folderProfile();
