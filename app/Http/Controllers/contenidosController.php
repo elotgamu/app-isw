@@ -122,6 +122,20 @@ public function listar_promo()
 
     }
 
+    /* Obtenemos los el id de la promocion
+    *  y retornamos sus elemntos para poder editarlos
+    */
+    public function getpromo($id)
+    {
+        $promocion = App\Promocion::find($id);
+        return response()->json($promocion->toArray());
+    }
+
+    public function editpromo(Request $request, $id)
+    {
+        # code...
+    }
+
     /* Agregamos nuevo productos
     *  los datos provienen de Ajax
     * #btnproducto

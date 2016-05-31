@@ -185,6 +185,16 @@ function info_categoria(btn)
   });
 }
 
+function info_promocion(btn)
+{
+    var url="mi_contenido/promocion/"+btn.value+"/modificar";
+    $.get(url, function (res) {
+        $("#txtnamepromo_updated").val(res.nombre_promo);
+        $("#txtdescpromo_updated").val(res.descripcion_promo);
+        $("#dptfechahasta").val(res.valido_hasta);
+        $("#id_promocion").val(res.id);
+    });
+}
 
 function cargar_promociones()
 {
@@ -200,9 +210,11 @@ function cargar_promociones()
                     "<div class='item  col-xs-8 col-lg-6'>"+
                     "<div class='thumbnail'>"+
                         "<img class='img-responsive' src='"+value.img_promo+"'/>"+
+                        "</a>"+
                          "<div class='caption'>"+
                             "<h4 class='group inner list-group-item-heading'>"+
                         value.nombre_promo+"</h4>"+
+                            "<button class='group inner list-group-item-heading' href='#updatepromo' data-toggle='modal' value="+value.id+" OnClick='info_promocion(this)'>Editar</button>"+
                         "</div>"+
                     "</div>"+
                     "</div>"

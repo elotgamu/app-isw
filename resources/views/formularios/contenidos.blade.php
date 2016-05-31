@@ -174,6 +174,45 @@
             </div>
         </div> <!-- fin modal nueva promocion -->
 
+        <!--modal del editar promocion -->
+        <div id="updatepromo" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                           X
+                       </button>
+                   </div>
+                   <h3>Información de la promoción</h3>
+                   <div class="modal-body">
+                       <div class="login-form">
+                           <div class="form-group">
+                               <input type="hidden" id="id_promocion"/>
+                               {!!Form::label('namepromo','Nombre de la promoción', array('class'=> 'label')) !!}
+                               {!!Form::text('txtnamepromo_updated', null, array('placeholder' => 'EJ: Día del trabajador', 'class' => 'form-control', 'id'=>'txtnamepromo_updated')) !!}
+                           </div>
+                           <div class="form-group">
+                               {!!Form::label('descpromo', 'Descripción de la promoción', array('class' => 'label')) !!}
+                               {!!Form::text('txtdescpromo_updated', null, array('placeholder' => 'EJ: Esta promoción trata de...', 'class' => 'form-control', 'id' =>'txtdescpromo_updated')) !!}
+                           </div>
+                           <div class="form-group">
+                               {!!Form::label('finpromo', 'Válida hasta:', array('class' => 'label')) !!}
+                               <div class="form-group">
+                                   <div class='input-group date'>
+                                       <input type='text' class="form-control" id="dptfechahasta"/>
+                                       <span class="input-group-addon">
+                                           <span class="glyphicon glyphicon-calendar"></span>
+                                       </span>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+            </div>
+        </div> <!--fin del modal actualizar promocion -->
+
          <div class="row">
              <div class="col-lg-12 text-center">
                  <!--<div id="notificaciones" class="row">

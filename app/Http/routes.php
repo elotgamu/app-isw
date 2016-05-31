@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/mi_contenido/Categorias/{id}','contenidosController@update');
     Route::post('/mi_contenido/promocion/agregar','contenidosController@addpromocion');
     Route::get('/mi_contenido/promocion/listar','contenidosController@listar_promo');
+    Route::get('/mi_contenido/promocion/{id}/modificar', 'contenidosController@getpromo');
+    Route::get('/mi_contenido/promocion/{id}', 'contenidosController@editpromo');
 });
 
 // esta es una ruta de prueba
