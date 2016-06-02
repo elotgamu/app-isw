@@ -199,13 +199,16 @@
                                {!!Form::label('finpromo', 'Válida hasta:', array('class' => 'label')) !!}
                                <div class="form-group">
                                    <div class='input-group date'>
-                                       <input type='text' class="form-control" id="dptfechahasta"/>
+                                       <input type='text' class="form-control" id="dptfechahasta_updated"/>
                                        <span class="input-group-addon">
                                            <span class="glyphicon glyphicon-calendar"></span>
                                        </span>
                                    </div>
-
                                </div>
+                           </div>
+                           <div class="form-group">
+                               {!!Form::label('volanteactual', 'Volante de la promoción', array('class' => 'label')) !!}
+                               {!!Form::image('', 'Volante actual', array('class' => 'img-responsive', 'id' =>'volpromo_updated')) !!}
                            </div>
                        </div>
                    </div>

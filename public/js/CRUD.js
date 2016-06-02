@@ -191,7 +191,8 @@ function info_promocion(btn)
     $.get(url, function (res) {
         $("#txtnamepromo_updated").val(res.nombre_promo);
         $("#txtdescpromo_updated").val(res.descripcion_promo);
-        $("#dptfechahasta").val(res.valido_hasta);
+        $("#dptfechahasta_updated").val(res.valido_hasta);
+        document.getElementById("volpromo_updated").src=res.img_promo;
         $("#id_promocion").val(res.id);
     });
 }

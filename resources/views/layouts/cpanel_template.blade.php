@@ -75,6 +75,11 @@ $(function() {
   $('#dptfechahasta').datepicker({
     format: "yyyy-mm-dd"
   });
+
+  //nuevo
+  $('#dptfechahasta_updated').datepicker({
+    format: "yyyy-mm-dd"
+  });
 });
 
 $(function(){
