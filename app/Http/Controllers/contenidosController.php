@@ -133,7 +133,34 @@ public function listar_promo()
 
     public function editpromo(Request $request, $id)
     {
-        # code...
+        $updated_data = Request::all();
+        $promocion = App\Promocion::find($id);
+        $negocio = App\Negocio::find(Auth::user()->user->negocio)->nameConcatenated();
+
+        try {
+            $promocion->nombre_promo = $updated_data['name_updated'];
+            $promocion->descripcion_promo = $updated_data['desc_updated'];
+
+            // validamos que no se selecciono un nuevo volante
+            if (!empty($updated_data['archivo'])) {
+                $input = $updated_data['archivo'];
+                $extension = $input->getClientOriginalExtension();
+                $input->move(public_path() .'/negocios/'. $negocio .'/imgs'.'/',
+                        $updated_data['updated_flyer']);
+                $promocion->img_promo = "../negocios/". $negocio ."/imgs"."//".
+                    $updated_data['updated_flyer'];
+            }
+
+            $promocion->valido_hasta = $updated_data['enddate_updated'];
+            $promocion->save();
+            return response()->json([
+                "mensaje"=>"¡Se han guardado los cambios en la promoción!"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "mensaje"=>"Ha ocurrido un error al modificar la promoción"
+            ]);
+        }
     }
 
     /* Agregamos nuevo productos

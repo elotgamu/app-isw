@@ -58,4 +58,10 @@ class Negocio extends Model
         File::makeDirectory($imgs, $mode = 0777, true, true);
         File::makeDirectory($videos, $mode = 0777, true, true);
     }
+
+    public function nameConcatenated()
+    {
+        $name_concatenated = str_replace(' ', '', $this->nombre_negocio);
+        return $name_concatenated;
+    }
 }

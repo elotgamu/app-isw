@@ -141,7 +141,7 @@ $("#btnsavepromocion").click(function(){
     }
     //var data = new FormData();
     var name_archivo=$("#ruta_img_promo").text();
-    data.append('archivo',$("#multipartFilePath")[0].files[0]);
+    data.append('archivo',$("#multipartFilePath_update")[0].files[0]);
     data.append('name',nombre_promocion);
     data.append('descrip',descrip_promo);
     data.append('fecha_ini',fechainicio);
@@ -168,12 +168,45 @@ $("#btnsavepromocion").click(function(){
         cargar_promociones();
       }
     });
-
 });
 
+$("#savepromoupdated").click(function () {
+    var data_updater = new FormData();
+    var name_promo_updated = $("#txtnamepromo_updated").val();
+    var descrip_promo_updated = $("#txtdescpromo_updated").val();
+    var fechafinal_updated=$("#dptfechahasta_updated").val();
+    var name_flyer_updated = $("#ruta_img_promo_updated").text();
+    var id_promo = $("#id_promocion").val();
 
+    data_updater.append('archivo', $("#multipartFilePath_update")[0].files[0]);
+    data_updater.append('name_updated', name_promo_updated);
+    data_updater.append('desc_updated', descrip_promo_updated);
+    data_updater.append('enddate_updated', fechafinal_updated);
+    data_updater.append('updated_flyer', name_flyer_updated);
+    var ruta_updated = "/mi_contenido/promocion/"+id_promo;
 
-
+    if (document.getElementById("multipartFilePath_update").files.length == 0) {
+        data_updater[0]=('archivo',"");
+    }
+    $.ajax({
+        url: ruta_updated,
+        type: 'POST',
+        dataType: 'json',
+        data: data_updater,
+        processData: false,
+        contentType: false,
+        success: function (res) {
+            $("#notificaciones").append(res.mensaje);
+            $("#notificaciones").fadeIn();
+            $("#updatepromo").modal('toggle');
+            $("#txtnamepromo_updated").val('');
+            $("#txtdescpromo_updated").val('');
+            $("#dptfechahasta_updated").val('');
+            $("#ruta_img_promo_updated").text('');
+            cargar_promociones();
+        }
+    });
+});
 
 function info_categoria(btn)
 {
@@ -197,6 +230,19 @@ function info_promocion(btn)
     });
 }
 
+$('.pop').click(function () {
+    var sr = $(this).find('img').attr('src');
+    $('#img_promo_preview').attr('src', sr);
+    $('#previewpromo').modal('show');
+});
+
+/*$('.pop').on('click', function () {
+    console.log("Click WTF");
+    var sr = $(this).find('img').attr('src');
+    $('#img_promo_preview').attr('src', sr);
+    $('#previewpromo').modal('show');
+});*/
+
 function cargar_promociones()
 {
     var dt_promocion=$("#lista_promocion");
@@ -210,6 +256,7 @@ function cargar_promociones()
                 dt_promocion.append(
                     "<div class='item  col-xs-8 col-lg-6'>"+
                     "<div class='thumbnail'>"+
+                        "<a data-toggle='modal' class='pop'>"+
                         "<img class='img-responsive' src='"+value.img_promo+"'/>"+
                         "</a>"+
                          "<div class='caption'>"+
@@ -228,6 +275,12 @@ function cargar_promociones()
     });
 
 }
+
+/*$("#image_promo").on('click', function () {
+    var sr_new =$(this).attr('src');
+    document.getElementById("imgpromo").src=res.img_promo;
+    $('#previewpromo').modal('show');
+});*/
 
 function cargar_categorias(){
     var dt_categorias = $("#lista_categorias");

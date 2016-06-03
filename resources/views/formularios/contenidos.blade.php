@@ -174,6 +174,20 @@
             </div>
         </div> <!-- fin modal nueva promocion -->
 
+        <!-- modal preview del volante de la promoción -->
+        <div id="previewpromo" class="modal fade">
+            <div class="modal-dialog" data-dismiss="modal">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            X
+                        </button>
+                        <img src="" class="imagepreview" id="img_promo_preview"/>
+                    </div>
+                </div>
+            </div>
+        </div><!-- fin modal de preview del volante de la promocion -->
+
         <!--modal del editar promocion -->
         <div id="updatepromo" class="modal fade">
             <div class="modal-dialog">
@@ -209,8 +223,20 @@
                            <div class="form-group">
                                {!!Form::label('volanteactual', 'Volante de la promoción', array('class' => 'label')) !!}
                                {!!Form::image('', 'Volante actual', array('class' => 'img-responsive', 'id' =>'volpromo_updated')) !!}
+                               <span>
+                                   <input type="file" style="visibility:hidden; width: 1px;"
+                                   id='multipartFilePath_update' name='multipartFilePath_update'
+                                   onchange="$(this).parent().find('span').html($(this).val().replace('C:\\fakepath\\', ''))">
+                                   <input class="btn btn-primary" type="button" value="Actualizar volante de la promoción"
+                                   onclick="$(this).parent().find('input[type=file]').click();">
+                                   &nbsp;
+                                   <span id="ruta_img_promo_updated" class="badge badge-important" ></span>
+                               </span>
                            </div>
                        </div>
+                   </div>
+                   <div class="modal-footer">
+                       <a id="savepromoupdated" href="#" class="btn btn-success">Guardar cambios</a>
                    </div>
                </div>
             </div>
