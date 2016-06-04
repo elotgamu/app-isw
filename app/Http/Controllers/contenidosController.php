@@ -93,13 +93,13 @@ public function listar_promo()
     public function addpromocion(Request $request)
     {
         $datos= Request::all();
-        $entrada= $datos['archivo'];
+        $input= $datos['archivo'];
         //subimos el archivo
         $negocio = App\Negocio::find(Auth::user()->user->negocio);
         //subimos el archivo al servidor
         try {
-            $extension = $entrada->getClientOriginalExtension();
-            $entrada->move(base_path() .'/public/negocios/'.str_replace(' ', '',$negocio['nombre_negocio']).'/imgs'.'/',$datos['ruta_archivo']);
+            $extension = $input->getClientOriginalExtension();
+            $input->move(base_path() .'/public/negocios/'.str_replace(' ', '',$negocio['nombre_negocio']).'/imgs'.'/',$datos['ruta_archivo']);
             $promocion= new app\Promocion();
             $promocion->activa=1;
             $promocion->nombre_promo=$datos['name'];

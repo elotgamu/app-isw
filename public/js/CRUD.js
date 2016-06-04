@@ -141,7 +141,7 @@ $("#btnsavepromocion").click(function(){
     }
     //var data = new FormData();
     var name_archivo=$("#ruta_img_promo").text();
-    data.append('archivo',$("#multipartFilePath_update")[0].files[0]);
+    data.append('archivo',$("#multipartFilePath")[0].files[0]);
     data.append('name',nombre_promocion);
     data.append('descrip',descrip_promo);
     data.append('fecha_ini',fechainicio);
@@ -149,6 +149,7 @@ $("#btnsavepromocion").click(function(){
     data.append('ruta_archivo',name_archivo);
     var ruta="/mi_contenido/promocion/agregar";
     //var datos={name: nombre_promocion, descrip: descrip_promo, fecha_ini: fechainicio, fecha_fin: fechafinal,archivo:data,ruta_archivo:name_archivo};
+
     $.ajax({
       url:ruta,
       type:'POST',
