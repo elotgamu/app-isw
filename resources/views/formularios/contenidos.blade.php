@@ -182,7 +182,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             X
                         </button>
-                        <img src="" class="imagepreview" id="img_promo_preview"/>
+                        <img src="" class="imagepreview" id="promo_preview"/>
                     </div>
                 </div>
             </div>

@@ -186,9 +186,9 @@ $("#savepromoupdated").click(function () {
     data_updater.append('updated_flyer', name_flyer_updated);
     var ruta_updated = "/mi_contenido/promocion/"+id_promo;
 
-    if (document.getElementById("multipartFilePath_update").files.length == 0) {
+    /*if (document.getElementById("multipartFilePath_update").files.length == 0) {
         data_updater[0]=('archivo',"");
-    }
+    }*/
     $.ajax({
         url: ruta_updated,
         type: 'POST',
@@ -231,18 +231,25 @@ function info_promocion(btn)
     });
 }
 
-$('.pop').click(function () {
-    var sr = $(this).find('img').attr('src');
-    $('#img_promo_preview').attr('src', sr);
-    $('#previewpromo').modal('show');
-});
-
-/*$('.pop').on('click', function () {
-    console.log("Click WTF");
+/*$('#pop').click(function () {
     var sr = $(this).find('img').attr('src');
     $('#img_promo_preview').attr('src', sr);
     $('#previewpromo').modal('show');
 });*/
+
+/*$(".pop").on('click', function () {
+    console.log("It works!");
+    var sr = $(this).find('img').attr('src');
+    //var sr = $(this).attr('src');
+    console.log(sr);
+    $("#promo_preview").attr('src', sr);
+    $("#previewpromo").modal('show');
+});*/
+
+function sr_preview(imagen) {
+    document.getElementById("promo_preview").src=imagen.src;
+    $("#previewpromo").modal('show');
+}
 
 function cargar_promociones()
 {
@@ -257,9 +264,7 @@ function cargar_promociones()
                 dt_promocion.append(
                     "<div class='item  col-xs-8 col-lg-6'>"+
                     "<div class='thumbnail'>"+
-                        "<a data-toggle='modal' class='pop'>"+
-                        "<img class='img-responsive' src='"+value.img_promo+"'/>"+
-                        "</a>"+
+                        "<img class='img-responsive' src='"+value.img_promo+"' value='"+value.img_promo+"' OnClick='sr_preview(this)'/>"+
                          "<div class='caption'>"+
                             "<h4 class='group inner list-group-item-heading'>"+
                         value.nombre_promo+"</h4>"+
@@ -276,12 +281,6 @@ function cargar_promociones()
     });
 
 }
-
-/*$("#image_promo").on('click', function () {
-    var sr_new =$(this).attr('src');
-    document.getElementById("imgpromo").src=res.img_promo;
-    $('#previewpromo').modal('show');
-});*/
 
 function cargar_categorias(){
     var dt_categorias = $("#lista_categorias");
