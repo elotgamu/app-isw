@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/mi_contenido','contenidosController@create');
     Route::get('/logout', 'loginController@destroy');
 
+    //datos del negocio
+    Route::get('/mi_contenido/detalles','contenidosController@getnego');
+
     //manejo del menu(categorias y productos)
     Route::get('/mi_contenido/menu','menuController@create');
     Route::get('/mi_contenido/menu/categoria/listar','menuController@listscategoria');

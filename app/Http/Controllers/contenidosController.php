@@ -37,6 +37,12 @@ class contenidosController extends Controller
           return view('formularios.contenidos');
     }
 
+    public function getnego()
+    {
+        $negocio = app\Negocio::find(Auth::user()->user->negocio);
+        return response()->json($negocio->toArray());
+    }
+
     /* listamos las categorias
     * filtrando las que pertenecen
     * al negocio haciendo uso de la

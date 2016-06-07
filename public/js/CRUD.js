@@ -395,6 +395,19 @@ function ls_prods(btn){
   });
 }
 
+function nego() {
+    ruta = '/mi_contenido/detalles';
+    $.get(ruta,function(dt){
+        $(dt).each(function(key, value){
+            $("#detalles").append(value.descipcion_negocio);
+            $("#negocio_numero").append(value.telefono_negocio);
+            $("#negocio_email").append(value.email_negocio);
+            $("#negocio_propietario").append(value.propietario_negocio)
+            $("#contacto_ubicacion").append(value.ubicacion_negocio);
+        });
+    });
+}
+
 $("#menu").on('click', function(){
     //cargar_categorias();
 });
@@ -407,6 +420,7 @@ $("#promociones").on('click', function(){
 $(document).ready(function(){
     //document.getElementById('dptfechahasta').readOnly = true;
          //$("#dptfechahasta").readOnly = true;
+    nego();
     cargar_categorias();
     cargar_promociones();
 });
