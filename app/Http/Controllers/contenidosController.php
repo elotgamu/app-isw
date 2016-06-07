@@ -37,6 +37,12 @@ class contenidosController extends Controller
           return view('formularios.contenidos');
     }
 
+    public function getnego()
+    {
+        $negocio = app\Negocio::find(Auth::user()->user->negocio);
+        return response()->json($negocio->toArray());
+    }
+
     /* listamos las categorias
     * filtrando las que pertenecen
     * al negocio haciendo uso de la
@@ -44,14 +50,15 @@ class contenidosController extends Controller
     */
     public function listar()
     {
-        $categoria = app\Categoria::where('negocio', Auth::user()->negocio)->get();
+        //$categoria = app\Categoria::where('negocio', Auth::user()->negocio)->get();
+        $categoria = app\Categoria::where('negocio', Auth::user()->user->negocio)->get();
         return response()->json($categoria->toArray());
    }
 
-
+//ya fue movido al PromocionesManagerController
 public function listar_promo()
 {
-    $promocion = app\Promocion::where('negocio_id', Auth::user()->negocio)->get();
+    $promocion = app\Promocion::where('negocio_id', Auth::user()->user->negocio)->get();
         return response()->json(
            $promocion->toArray()
         );
@@ -77,26 +84,29 @@ public function listar_promo()
     {
       //
       $data = Request::all();
+      $negocio = Auth::user()->user->negocio;
       $categorias= new app\Categoria();
       $categorias->nombre_categoria=$data['name'];
       $categorias->descripcion_categoria=$data['descrip'];
-      $categorias->negocio=$data['nego'];
+      $categorias->negocio = $negocio;
+      //$categorias->negocio=$data['nego'];
       $categorias->save();
       return  response()->json([
         "mensaje"=>"Categoria agregada"
       ]);
     }
 
+    //ya fue movido a PromocionesManagerController@store
     public function addpromocion(Request $request)
     {
         $datos= Request::all();
-        $entrada= $datos['archivo'];
+        $input= $datos['archivo'];
         //subimos el archivo
-        $negocio = App\Negocio::find(Auth::user()->negocio);
+        $negocio = App\Negocio::find(Auth::user()->user->negocio);
         //subimos el archivo al servidor
         try {
-            $extension = $entrada->getClientOriginalExtension();
-            $entrada->move(base_path() .'/public/negocios/'.str_replace(' ', '',$negocio['nombre_negocio']).'/imgs'.'/',$datos['ruta_archivo']);
+            $extension = $input->getClientOriginalExtension();
+            $input->move(base_path() .'/public/negocios/'.str_replace(' ', '',$negocio['nombre_negocio']).'/imgs'.'/',$datos['ruta_archivo']);
             $promocion= new app\Promocion();
             $promocion->activa=1;
             $promocion->nombre_promo=$datos['name'];
@@ -117,6 +127,58 @@ public function listar_promo()
         }
 
 
+    }
+
+    /* Obtenemos los el id de la promocion
+    *  y retornamos sus elemntos para poder editarlos
+    */
+    public function getpromo($id)
+    {
+        $promocion = App\Promocion::find($id);
+        return response()->json($promocion->toArray());
+    }
+
+    public function editpromo(Request $request, $id)
+    {
+        $updated_data = Request::all();
+        $promocion = App\Promocion::find($id);
+        $negocio = App\Negocio::find(Auth::user()->user->negocio)->nameConcatenated();
+
+        try {
+
+            // validamos que no se selecciono un nuevo volante
+
+            if ( ! empty ($updated_data['archivo'])){
+                $input = $updated_data['archivo'];
+                $extension = $input->getClientOriginalExtension();
+                $input->move(public_path() .'/negocios/'. $negocio .'/imgs'.'/',
+                        $updated_data['updated_flyer']);
+
+                $promocion->nombre_promo = $updated_data['name_updated'];
+                $promocion->descripcion_promo = $updated_data['desc_updated'];
+                $promocion->img_promo = "../negocios/". $negocio ."/imgs"."//".
+                    $updated_data['updated_flyer'];
+                $promocion->valido_hasta = $updated_data['enddate_updated'];
+                $promocion->save();
+                return response()->json([
+                    "mensaje"=>"¡Se han guardado los cambios en la promoción!"
+                ]);
+            }
+            else {
+                $promocion->nombre_promo = $updated_data['name_updated'];
+                $promocion->descripcion_promo = $updated_data['desc_updated'];
+                $promocion->valido_hasta = $updated_data['enddate_updated'];
+                $promocion->save();
+                return response()->json([
+                    "mensaje"=>"¡Se han guardado los cambios en la promoción pero el volante de la promoción no ha cambiado!"
+                ]);
+            }
+
+        } catch (Exception $e) {
+            return response()->json([
+                "mensaje"=>"Ha ocurrido un error al modificar la promoción"
+            ]);
+        }
     }
 
     /* Agregamos nuevo productos

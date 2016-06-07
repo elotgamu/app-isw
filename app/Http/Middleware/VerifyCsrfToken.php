@@ -14,10 +14,16 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except_urls = [
         //
-       '/mi_contenido/categoria/agregar',
-       '/mi_contenido/listar',
-       '/mi_contenido/producto/agregar',
-       '/mi_contenido/promocion/agregar'
+       //'/mi_contenido/categoria/agregar',
+       '/mi_contenido/menu/categoria/agregar',
+       //'/mi_contenido/listar',
+       '/mi_contenido/menu/categoria/listar',
+
+       //'/mi_contenido/producto/agregar',
+       '/mi_contenido/menu/producto/agregar',
+       //'/mi_contenido/promocion/agregar',
+       //agregado
+       '/mi_contenido/promociones/agregar'
     ];
 
 

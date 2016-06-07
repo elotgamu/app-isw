@@ -17,9 +17,14 @@ class Negocio extends Model
       return $this->hasMany('App\Pedido');
     }
 
-    public function user()
+    /*public function user()
     {
       return $this->hasMany('App\User', 'negocio', 'codigo_negocio');
+  }*/
+
+    public function admin()
+    {
+        return $this->hasOne('App\Admin', 'negocio', 'codigo_negocio');
     }
 
     public function mesa()
@@ -52,5 +57,11 @@ class Negocio extends Model
         File::makeDirectory($ruta_a_public, $mode = 0777, true, true);
         File::makeDirectory($imgs, $mode = 0777, true, true);
         File::makeDirectory($videos, $mode = 0777, true, true);
+    }
+
+    public function nameConcatenated()
+    {
+        $name_concatenated = str_replace(' ', '', $this->nombre_negocio);
+        return $name_concatenated;
     }
 }

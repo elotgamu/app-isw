@@ -17,7 +17,9 @@
                      @endif
             </div>
               <div class="login-form">
-                <div class="form-group">
+                <!-- <div class="form-group"> -->
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                   {!! Form::text('txtnuser', null,array('placeholder' => 'Nombre de usuario', 'class' => 'form-control','autofocus')) !!}
                   @if( $errors->has('txtnuser') )
                   @foreach($errors->get('txtnuser') as $error )
@@ -28,7 +30,10 @@
                   @endforeach
                   @endif
                 </div>
-                <div class="form-group">
+                <br>
+                <!-- <div class="form-group"> -->
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   {!! Form::password('txtpassword', array('placeholder' => 'Contraseña','class' => 'form-control')) !!}
                   @if( $errors->has('txtpassword') )
                   @foreach($errors->get('txtpassword') as $error )
@@ -39,6 +44,7 @@
                   @endforeach
                   @endif
                 </div>
+                <br>
                 <div>
                   <div class="btn-group">
                     {!! Form::submit('Iniciar sesión',array('class'=>'btn btn-default boton'))!!}

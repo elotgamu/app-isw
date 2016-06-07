@@ -18,28 +18,32 @@
   <body>
         <!--header del sitio-->
         @include('includes.header2')
+
         <div class="col-md-2 col-xs-2">
   <div id="wrapper">
           <!-- Sidebar -->
      <div id="sidebar-wrapper">
          <ul class="sidebar-nav">
-             <li class="sidebar-brand">
-                 <a href="#">
-                 </a>
+             <br>
+             <br>
+             <br>
+             <li id="contenido">
+                 <a href="{{ URL::to('/mi_contenido')}}"><i class="glyphicon glyphicon-briefcase"></i> Mi contenido</a></li>
+             <li id="menu">
+                 <a href="{{ URL::to('/mi_contenido/menu') }}">
+                 <i class="glyphicon glyphicon-bookmark"></i> Menú</a>
              </li>
-             <li>
-                 <a href="#">Mi contenido</a>
+             <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> Pedidos</a></li>
+             <li id="promociones">
+                 <a href="{{ URL::to('/mi_contenido/promociones') }}"><i class="glyphicon glyphicon-time"></i> Promociones</a>
              </li>
-             <li>
-                 <a href="#">Pedidos</a>
-             </li>
-             <li>
-                 <a href="#">Reservaciones</a>
-             </li>
+             <li><a href="#"><i class="glyphicon glyphicon-tags"></i>&nbsp Reservaciones</a></li>
+
          </ul>
      </div>
    </div>
   </div>
+
         <div class="col-md-8 col-xs-10">
             @yield('worksheets')
         </div>
@@ -73,6 +77,11 @@
 
 $(function() {
   $('#dptfechahasta').datepicker({
+    format: "yyyy-mm-dd"
+  });
+
+  //nuevo
+  $('#dptfechahasta_updated').datepicker({
     format: "yyyy-mm-dd"
   });
 });

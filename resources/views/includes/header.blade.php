@@ -18,8 +18,21 @@
                   <a href="{{ action("listanegocioController@create") }}">Catálogo de negocios</a>
                 </li>
                 <li>
-                    <a href="services.html">Últimas publicaciones</a>
+                    <a href="#">Últimas publicaciones</a>
                 </li>
+                @if(Auth::check())
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i> {{ Auth::user()->name }}<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ URL::to('/logout') }}"><i class="glyphicon glyphicon-lock"></i> Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </li>
+                @else
+                    <li><a href="{{ action("loginController@create") }}">Iniciar Sesión</a></li>
+                @endif
                 <!--
                 <li>
                     <a href="contact.html">Contact</a>

@@ -85,7 +85,23 @@ class loginController extends Controller
         // return Redirect::to('secure');
         // for now we'll just echo success (even though echoing in a controller is bad)
         //return Redirect()->route('/{usuario}/micontendio', ['usuario' =>  $userdata['name']]);
-        return Redirect::to('/mi_contenido');
+
+        //comento ya que ahora se manejan 2 tipos de usuarios
+        //return Redirect::to('/mi_contenido');
+        //obtenemos el tipo de usuario
+        if(Auth::user()->user_type =='App\Admin')
+        {
+            return Redirect::to('/mi_contenido');
+        }
+        else if(Auth::user()->user_type =='App\Cliente')
+        {
+            //echo "Usuario cliente";
+            return redirect('/')->with('mensaje', '¡Ha iniciado sesión como cliente en nuestra plataforma!');
+        }
+        else
+        {
+            echo Auth::user()->user_type;
+        }
         //echo 'SUCCESS!' . $userdata['name'];
     }
     else {
