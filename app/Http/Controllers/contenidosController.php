@@ -49,7 +49,7 @@ class contenidosController extends Controller
         return response()->json($categoria->toArray());
    }
 
-
+//ya fue movido al PromocionesManagerController
 public function listar_promo()
 {
     $promocion = app\Promocion::where('negocio_id', Auth::user()->user->negocio)->get();
@@ -90,6 +90,7 @@ public function listar_promo()
       ]);
     }
 
+    //ya fue movido a PromocionesManagerController@store
     public function addpromocion(Request $request)
     {
         $datos= Request::all();

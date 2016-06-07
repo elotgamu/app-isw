@@ -11,7 +11,8 @@ $("#btnadd").click(function(){
 
   // comento ya que ya no obtengo el negocio
   //var negocio= $("#negocio").val();
-  var ruta="/mi_contenido/categoria/agregar";
+  //var ruta="/mi_contenido/categoria/agregar";
+  var ruta="/mi_contenido/menu/categoria/agregar";
   if (nombre=='')
   {
       smoke.alert('No ha ingresado el nombre de la nueva promoción ¬¬');
@@ -66,7 +67,8 @@ $("#btnproducto").click(function(){
     smoke.alert('A no ser que este producto sea una cortesía, indique su precio');
     return;
   }
-  var ruta="/mi_contenido/producto/agregar";
+  //var ruta="/mi_contenido/producto/agregar";
+  var ruta="/mi_contenido/menu/producto/agregar";
   var datos={name: nombre, precio: precio, id_catego:id_categoria};
 
   $.ajax({
@@ -91,7 +93,8 @@ $("#btnupdate_cate").click(function(){
   var descripcion= $("#txtdescripcion_update").val();
   var id_categ= $("#id_categoria").val();
 
-  var ruta="/mi_contenido/Categorias/"+id_categ;
+  //var ruta="/mi_contenido/Categorias/"+id_categ;
+  var ruta="/mi_contenido/menu/categoria/"+id_categ;
   var datos={name: nombre, descrip: descripcion};
 
   $.ajax({
@@ -147,7 +150,8 @@ $("#btnsavepromocion").click(function(){
     data.append('fecha_ini',fechainicio);
     data.append('fecha_fin',fechafinal);
     data.append('ruta_archivo',name_archivo);
-    var ruta="/mi_contenido/promocion/agregar";
+    //var ruta="/mi_contenido/promocion/agregar";
+    var ruta="/mi_contenido/promociones/agregar";
     //var datos={name: nombre_promocion, descrip: descrip_promo, fecha_ini: fechainicio, fecha_fin: fechafinal,archivo:data,ruta_archivo:name_archivo};
 
     $.ajax({
@@ -184,11 +188,9 @@ $("#savepromoupdated").click(function () {
     data_updater.append('desc_updated', descrip_promo_updated);
     data_updater.append('enddate_updated', fechafinal_updated);
     data_updater.append('updated_flyer', name_flyer_updated);
-    var ruta_updated = "/mi_contenido/promocion/"+id_promo;
+    //var ruta_updated = "/mi_contenido/promociones/"+id_promo;
+    var ruta_updated = "promociones/"+id_promo;
 
-    /*if (document.getElementById("multipartFilePath_update").files.length == 0) {
-        data_updater[0]=('archivo',"");
-    }*/
     $.ajax({
         url: ruta_updated,
         type: 'POST',
@@ -211,7 +213,8 @@ $("#savepromoupdated").click(function () {
 
 function info_categoria(btn)
 {
-  var ruta="mi_contenido/Categorias/"+btn.value+"/modificar";
+  //var ruta="mi_contenido/Categorias/"+btn.value+"/modificar";
+  var ruta="menu/categoria/"+btn.value+"/modificar";
   $.get(ruta, function(res){
         $("#txtdescripcion_update").val(res.descripcion_categoria);
         $("#txtcategoria_update").val(res.nombre_categoria);
@@ -221,7 +224,8 @@ function info_categoria(btn)
 
 function info_promocion(btn)
 {
-    var url="mi_contenido/promocion/"+btn.value+"/modificar";
+    //var url="mi_contenido/promocion/"+btn.value+"/modificar";
+    var url="promociones/"+btn.value+"/modificar";
     $.get(url, function (res) {
         $("#txtnamepromo_updated").val(res.nombre_promo);
         $("#txtdescpromo_updated").val(res.descripcion_promo);
@@ -254,7 +258,8 @@ function sr_preview(imagen) {
 function cargar_promociones()
 {
     var dt_promocion=$("#lista_promocion");
-    var ruta="mi_contenido/promocion/listar";
+    //var ruta="mi_contenido/promocion/listar";
+    var ruta="promociones/listar";
     $.get(ruta, function(res) {
         if(res.length>0)
         {
@@ -264,11 +269,13 @@ function cargar_promociones()
                 dt_promocion.append(
                     "<div class='item  col-xs-8 col-lg-6'>"+
                     "<div class='thumbnail'>"+
-                        "<img class='img-responsive' src='"+value.img_promo+"' value='"+value.img_promo+"' OnClick='sr_preview(this)'/>"+
-                         "<div class='caption'>"+
-                            "<h4 class='group inner list-group-item-heading'>"+
+                        "<div class='caption'>"+
+                        "<h4 class='group inner list-group-item-heading'>"+
                         value.nombre_promo+"</h4>"+
-                            "<button class='group inner list-group-item-heading' href='#updatepromo' data-toggle='modal' value="+value.id+" OnClick='info_promocion(this)'>Editar</button>"+
+                        "</div>"+
+                        "<img class='img-responsive' src='"+value.img_promo+"' height='400' width='400' value='"+value.img_promo+"' OnClick='sr_preview(this)'/>"+
+                        "<div class='caption'>"+
+                            "<button class='btn btn-primary' href='#updatepromo' data-toggle='modal' value="+value.id+" OnClick='info_promocion(this)'><span class='glyphicon glyphicon-pencil'></span> Editar</button>"+
                         "</div>"+
                     "</div>"+
                     "</div>"
@@ -292,7 +299,7 @@ function cargar_categorias(){
     );
     $("#lista_categorias").empty();
     ls_producto.empty();
-    var ruta="mi_contenido/listar";
+    var ruta="menu/categoria/listar";
 
       $.get(ruta,function(res){
         var cantidad_cat=res.length;
@@ -309,7 +316,7 @@ function cargar_categorias(){
                       "<h4 class='group inner list-group-item-text'>"+value.nombre_categoria+"</h4>"+
                   "</div>"+
                   "<div class='col-lg-4'>"+
-                    "<button class='btn btn-info btn-sm' href='#updatecategoria' data-toggle='modal' value="+value.codigo_categoria+" OnClick='info_categoria(this)'>Editar</button>"+
+                    "<button class='btn btn-info btn-sm' href='#updatecategoria' data-toggle='modal' value="+value.codigo_categoria+" OnClick='info_categoria(this)'><span class='glyphicon glyphicon-pencil'></span> Editar</button>"+
                     "&nbsp"+"&nbsp"+
                     "<button class='btn btn-info btn-sm' href='#lsprodcat' data-toggle='modal' ' value="+value.codigo_categoria+" OnClick='ls_prods(this)'>Ver Productos</button>"+
                   "</div>"+
@@ -361,7 +368,9 @@ function cargar_categorias(){
 function ls_prods(btn){
     var ls_producto=$('#lista_producto');
     ls_producto.empty();
-    var ruta2="/mi_contenido/categoria/"+btn.value+"/producto/listar";
+    //var ruta2="/mi_contenido/categoria/"+btn.value+"/producto/listar";
+    var ruta2="/mi_contenido/menu/producto/"+btn.value+"/listar";
+
     $.get(ruta2,function(res1){
             $(res1).each(function(key1,value1){
                 ls_producto.append(
@@ -386,9 +395,18 @@ function ls_prods(btn){
   });
 }
 
-$(document).ready(function(){
+$("#menu").on('click', function(){
+    //cargar_categorias();
+});
+
+$("#promociones").on('click', function(){
+    //cargar_promociones();
     document.getElementById('dptfechahasta').readOnly = true;
+});
+
+$(document).ready(function(){
+    //document.getElementById('dptfechahasta').readOnly = true;
          //$("#dptfechahasta").readOnly = true;
-       cargar_categorias();
-       cargar_promociones();
+    cargar_categorias();
+    cargar_promociones();
 });
