@@ -69,4 +69,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->estado;
     }
+
+    public function isAdmin()
+    {
+        return $this->user_type;
+    }
 }

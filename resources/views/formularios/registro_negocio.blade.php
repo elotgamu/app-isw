@@ -25,11 +25,14 @@
                       <div class="form-group">
                        <div class="btn-group">
                          <p>
-                            <a href="{{ action("addnegocioController@create") }}" class="btn btn-primary">Unete a la plataforma</a>
+                            <a href="{{ action("addnegocioController@create") }}" class="btn btn-primary">Registra tu negocio</a>
                           </p>
                           <p>
+                            <a href="{{ action("addclienteController@create") }}" class="btn btn-primary">Únete a la plataforma</a>
+                          </p>
+                          <!-- <p>
                              <a href="{{ action("loginController@create") }}" class="btn btn-primary">Iniciar Sesión</a>
-                           </p>
+                         </p> -->
                        </div>
                      </div>
                      </div>

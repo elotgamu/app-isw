@@ -14,12 +14,15 @@ Route::get('/', 'negocioController@create');
 Route::get('/home','negocioController@create');
 Route::get('/registro','addnegocioController@create');
 Route::post('/registro','addnegocioController@store');
+Route::get('/registro/cliente','addclienteController@create');
+Route::post('/registro/cliente','addclienteController@store');
 Route::get('/registro/confirmacion/{token}', 'addnegocioController@emailConfirm');
 
 // aqui deseo filtar si el usuario esta activado
 // en caso contrario no deberia poder loguearse
 Route::get('/login', 'loginController@create');
 Route::post('/login', 'loginController@store');
+Route::get('/logout', 'loginController@destroy');
 
 Route::get('/catalogo_negocios', 'listanegocioController@create');
 Route::post('/catalogo_negocios','listanegocioController@store');
@@ -28,9 +31,9 @@ Route::get('/catalogo_negocios/{id}','listanegocioController@vermenu');
 
 // Panel de administarcion de perfiles
 // lo restringimos para usuarios autenticados
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => ['auth', 'App\Http\Middleware\AdminMiddleware']], function(){
     Route::get('/mi_contenido','contenidosController@create');
-    Route::get('/logout', 'loginController@destroy');
+    //Route::get('/logout', 'loginController@destroy');
 
     //datos del negocio
     Route::get('/mi_contenido/detalles','contenidosController@getnego');
