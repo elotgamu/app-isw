@@ -12,4 +12,14 @@ class Cliente extends Model
     {
         return $this->morphOne('App\User', 'user');
     }
+
+    public function pedido()
+    {
+        return $this->hasMany('App\Pedido');
+    }
+
+    public function reservacion()
+    {
+        return $this->hasMany('App\Reservacion');
+    }
 }

@@ -22,6 +22,11 @@ Route::get('/registro/confirmacion/{token}', 'addnegocioController@emailConfirm'
 // en caso contrario no deberia poder loguearse
 Route::get('/login', 'loginController@create');
 Route::post('/login', 'loginController@store');
+/*Route::post('/login', [
+    'middleware' => 'activated.email',
+    'uses' => 'loginController@store'
+]);
+*/
 Route::get('/logout', 'loginController@destroy');
 
 Route::get('/catalogo_negocios', 'listanegocioController@create');
@@ -31,9 +36,8 @@ Route::get('/catalogo_negocios/{id}','listanegocioController@vermenu');
 
 // Panel de administarcion de perfiles
 // lo restringimos para usuarios autenticados
-Route::group(['middleware' => ['auth', 'App\Http\Middleware\AdminMiddleware']], function(){
+Route::group(['middleware' => ['auth','admin.restrict']], function(){
     Route::get('/mi_contenido','contenidosController@create');
-    //Route::get('/logout', 'loginController@destroy');
 
     //datos del negocio
     Route::get('/mi_contenido/detalles','contenidosController@getnego');

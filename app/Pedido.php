@@ -16,6 +16,11 @@ class Pedido extends Model
       return $this->belongsTo('App\Negocio');
     }
 
+    public function cliente()
+    {
+        return $this->belongsTo('App\Cliente');
+    }
+
     //defino la relacion muchos a muchos de pedido producto
     // 1) el modelo al que apunta
     // 2) la tabla muchos a muchos(su nombre real)

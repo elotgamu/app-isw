@@ -47,6 +47,11 @@ class Negocio extends Model
         return $this->hasMany('App\Promocion', 'negocio_id', 'codigo_negocio');
     }
 
+    public function reservacion()
+    {
+        return $this->hasMany('App\Reservacion', 'negocio', 'codigo_negocio');
+    }
+
     public function folderProfile()
     {
         $name = str_replace(' ', '', $this->nombre_negocio);

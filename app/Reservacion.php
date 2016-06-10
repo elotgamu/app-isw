@@ -14,4 +14,14 @@ class Reservacion extends Model
     {
       return $this->hasMany('App\Mesa');
     }
+
+    public function cliente()
+    {
+        return $this->belongsTo('App\Cliente');
+    }
+
+    public function negocio()
+    {
+        return $this->belongsTo('App\Negocio', 'negocio', 'codigo_negocio');
+    }
 }

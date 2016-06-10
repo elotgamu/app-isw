@@ -42,13 +42,16 @@ class Authenticate
                 return redirect()->guest('/login')->with('mensaje', 'Primero debe iniciar sesión');
                 //return redirect()->guest('auth/login');
             }
-        }
-
-        // verifico si ya el usuario esta activo(confirmado)
-        if ( ! $this->auth->user()->isActivated() ) {
-            return redirect()->guest('/login')->with('mensaje', 'Lo sentimos, su cuenta no ha sido activada aún');
         } else {
             return $next($request);
         }
+
+        //esto es una prueba comento
+        // verifico si ya el usuario esta activo(confirmado)
+        /*if ( ! $this->auth->user()->isActivated() ) {
+            return redirect()->guest('/login')->with('mensaje', 'Lo sentimos, su cuenta no ha sido activada aún');
+        }else {
+            return $next($request);
+        }*/
     }
 }

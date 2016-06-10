@@ -14,6 +14,15 @@ use \Validator, \Redirect;
 
 class loginController extends Controller
 {
+    /*
+     * Agrego el construct para el middleware
+     * de verificacion de cuenta activa
+    */
+    /*public function __construct()
+    {
+        $this->middleware('activated.email');
+    }
+    */
     /**
      * Display a listing of the resource.
      *
@@ -80,6 +89,26 @@ class loginController extends Controller
           // attempt to do the login
     if (Auth::attempt($userdata)) {
 
+        if( ! Auth::user()->isActivated()){
+            Auth::logout();
+            return redirect('/login')
+                ->with('mensaje',
+                       '¡Lo sentimos, no ha confirmado su cuenta aún!');
+        } else {
+            if(Auth::user()->user_type =='App\Admin')
+            {
+                return Redirect::to('/mi_contenido');
+            }
+            else if(Auth::user()->user_type =='App\Cliente')
+            {
+                //echo "Usuario cliente";
+                return redirect('/')->with('mensaje', '¡Ha iniciado sesión como cliente en nuestra plataforma!');
+            }
+            else
+            {
+                echo Auth::user()->user_type;
+            }
+        }
         // validation successful!
         // redirect them to the secure section or whatever
         // return Redirect::to('secure');
@@ -89,7 +118,7 @@ class loginController extends Controller
         //comento ya que ahora se manejan 2 tipos de usuarios
         //return Redirect::to('/mi_contenido');
         //obtenemos el tipo de usuario
-        if(Auth::user()->user_type =='App\Admin')
+        /*if(Auth::user()->user_type =='App\Admin')
         {
             return Redirect::to('/mi_contenido');
         }
@@ -101,7 +130,7 @@ class loginController extends Controller
         else
         {
             echo Auth::user()->user_type;
-        }
+        }*/
         //echo 'SUCCESS!' . $userdata['name'];
     }
     else {
