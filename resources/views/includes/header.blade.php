@@ -8,7 +8,7 @@
                  <span class="icon-bar"></span>
                  <span class="icon-bar"></span>
             </button>
-             <a class="navbar-brand page-scroll" href="{{ action("negocioController@create") }}">Plataforma gastronomica publicitaria</a>
+             <a class="navbar-brand page-scroll" href="{{ action("negocioController@create") }}">Plataforma gastronómica publicitaria</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling  -->
@@ -25,6 +25,15 @@
                     <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-user"></i> {{ Auth::user()->name }}<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
+
+                        {{-- verifico si el user es admin de negocio y le muestro el enlace a su contenido --}}
+                        @if(Auth::user()->user_type == 'App\Admin')
+                            <li>
+                                <a href="{{ URL::to('/mi_contenido') }}">
+                                    <i class="glyphicon glyphicon-briefcase">
+                                    </i> Mi contenido</a>
+                            </li>
+                        @endif
                         <li>
                             <a href="{{ URL::to('/logout') }}"><i class="glyphicon glyphicon-lock"></i> Cerrar Sesión</a>
                         </li>

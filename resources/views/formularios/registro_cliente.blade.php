@@ -5,7 +5,7 @@
 <div class="col-md-4 center-block quitar espacio3 text-center margen">
   <div  class="panel panel-primary" >
     <div class="panel-heading">
-    <h3 class="panel-title">Datos del miembro</h3>
+    <h3 class="panel-title">Datos personales</h3>
     </div>
   <div class="panel-body">
   {!! Form::open(['url'=>'registro/cliente']) !!}
@@ -25,7 +25,7 @@
             </div>
              <div class="form-group">
               {!! Form::label('apellido','Apellidos:',array('class'=> 'label')) !!}
-               {!! Form::text('txtapellidos',null,array('placeholder' => 'EJ: Lopez Solis','class' => 'form-control')) !!}
+               {!! Form::text('txtapellidos',null,array('placeholder' => 'EJ: López Solís','class' => 'form-control')) !!}
                 @if($errors->has('txtapellidos'))
               @foreach($errors->get('txtapellidos') as $error )
               <div class="alert alert-warning alert-dismissable">
@@ -48,7 +48,7 @@
               @endif
             </div>
             <div class="form-group">
-              {!! Form::label('email','Correo electronico:',array('class'=> 'label')) !!}
+              {!! Form::label('email','Correo electrónico:',array('class'=> 'label')) !!}
                {!! Form::email('txtemail', null,array('placeholder' => 'EJ: juanlopez@ejemplo.com', 'class' => 'form-control')) !!}
               @if($errors->has('txtemail'))
               @foreach($errors->get('txtemail') as $error )
@@ -61,7 +61,7 @@
             </div>
             <div class="form-group">
               {!! Form::label('Telefono','Teléfono:',array('class'=> 'label')) !!}
-              {!! Form::text('txttelefono',null,array('pattern'=>'[0-9]{8}','id'=>'txttelefono','class' => 'form-control')) !!}
+              {!! Form::text('txttelefono',null,array('placeholder'=>'88884444', 'pattern'=>'[0-9]{8}','id'=>'txttelefono','class' => 'form-control')) !!}
               @if($errors->has('txttelefono'))
               @foreach($errors->get('txttelefono') as $error )
               <div class="alert alert-warning alert-dismissable">
