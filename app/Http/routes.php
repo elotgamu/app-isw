@@ -59,6 +59,13 @@ Route::group(['middleware' => ['auth','admin.restrict']], function(){
     Route::post('/mi_contenido/promociones/{id}','PromocionesManagerController@update');
 });
 
+//agrego las rutas para reset de password
+Route::get('/password_recovery','Auth\PasswordController@getEmail');
+Route::post('/password_recovery','Auth\PasswordController@postEmail');
+
+Route::get('/password_reset/{token}','Auth\PasswordController@getReset');
+Route::post('/password_reset','Auth\PasswordController@postReset');
+
 // esta es una ruta de prueba
 // solo muestra el esqueleto del sitio sin contenido
 Route::get('/prueba', 'registroController@prueba');
