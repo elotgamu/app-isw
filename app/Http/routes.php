@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth','admin.restrict']], function(){
 
     //datos del negocio
     Route::get('/mi_contenido/detalles','contenidosController@getnego');
+    Route::get('/mi_contenido/detalles/edit','contenidosController@infotoedit');
+    Route::put('/mi_contenido/detalles/modificar/','contenidosController@nego_updated');
 
     //manejo del menu(categorias y productos)
     Route::get('/mi_contenido/menu','menuController@create');

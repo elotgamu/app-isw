@@ -4,6 +4,69 @@ $.ajaxSetup({
     }
   });
 
+//get nego info to edit 'em
+function editinfo() {
+    var url = '/mi_contenido/detalles/edit';
+    $.get(url, function (res) {
+        $(res).each(function(key,value){
+            $("#descupdatetxt").val(value.descipcion_negocio);
+            $("#siteupdatetxt").val(value.ubicacion_negocio);
+            $("#mailupdatetxt").val(value.email_negocio);
+            $("#phoneupdatedtxt").val(value.telefono_negocio);
+        });
+    });
+}
+
+$("#updateinfonego").click(function() {
+    var desc = $("#descupdatetxt").val();
+    var site = $("#siteupdatetxt").val();
+    var mail = $("#mailupdatetxt").val();
+    var phone = $("#phoneupdatedtxt").val();
+    var put_url = '/mi_contenido/detalles/modificar';
+
+    if (desc == '') {
+        smoke.alert('No deje la descripción de su negocio sin datos');
+        return;
+    }
+    if (site == '') {
+        smoke.alert('La ubicación no ha de estar vacía');
+        return;
+    }
+    if (mail == '') {
+        smoke.alert('¿sin email cómo le contactamos?' );
+        return;
+    }
+    if (phone == '') {
+        smoke.alert('Ingrese su número de teléfono de contacto');
+        return;
+    }
+    var update = {details:desc, location:site, email_negocio:mail, telephone:phone};
+    $.ajax({
+        url: put_url,
+        type:'PUT',
+        dataType:'json',
+        data:update,
+        success:function(res) {
+            if (res.success) {
+                $("#notificaciones").append(res.mensaje);
+                $("#notificaciones").fadeIn();
+                $("#updatenego").modal('toggle');
+                $("#descupdatetxt").val('');
+                $("#siteupdatetxt").val('');
+                $("#mailupdatetxt").val('');
+                $("#phoneupdatedtxt").val('');
+                nego();
+            } else if(res.errors) {
+                $(res.errors).each(function(index, value) {
+                    $("#descerror").append(value.details);
+                    $("#siteerror").append(value.location);
+                    $("#mailerror").append(value.email_negocio);
+                    $("#phoneerror").append(value.telephone);
+                });
+            }
+        }
+    });
+});
 
 $("#btnadd").click(function(){
   var nombre= $("#txtcategoria").val();
@@ -396,6 +459,11 @@ function ls_prods(btn){
 }
 
 function nego() {
+    $("#detalles").val('');
+    $("#negocio_numero").val('');
+    $("#negocio_email").val('');
+    $("#negocio_propietario").val('')
+    $("#contacto_ubicacion").val('');
     ruta = '/mi_contenido/detalles';
     $.get(ruta,function(dt){
         $(dt).each(function(key, value){
